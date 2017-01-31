@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47240694-24b6-4a23-b693-d4bb1b12344a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/poduction/SymTable.class" afterPath="$PROJECT_DIR$/output/poduction/SymTable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -498,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485818447284</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="first files added">
+      <created>1485834243882</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1485834243882</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
