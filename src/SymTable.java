@@ -10,7 +10,8 @@ public class SymTable {
         symTableList.add(new HashMap<String, Sym>());
     }
 
-    public void addDecl(String name, Sym sym) throws DuplicateSymException, EmptySymTableException, NullPointerException {
+    public void addDecl(String name, Sym sym) throws DuplicateSymException,
+            EmptySymTableException, NullPointerException {
         if (symTableList.isEmpty()) {
             throw new EmptySymTableException();
         }
@@ -23,7 +24,6 @@ public class SymTable {
         } else {
             firtsElement.put(name, sym);
         }
-
     }
 
     public void addScope() {
@@ -31,27 +31,21 @@ public class SymTable {
     }
 
     public Sym lookupLocal(String name) throws EmptySymTableException {
-
         if (symTableList.isEmpty()) {
             throw new EmptySymTableException();
         }
-
-
         HashMap<String, Sym> firtsElement = symTableList.get(0);
         if (firtsElement.containsKey(name)) {
             return firtsElement.get(name);
         } else {
             return null;
         }
-
     }
 
     public Sym lookupGlobal(String name) throws EmptySymTableException {
-
         if (symTableList.isEmpty()) {
             throw new EmptySymTableException();
         }
-
         for (HashMap<String, Sym> hashMap : symTableList) {
             // For each hashmap, iterate over it
             if (hashMap.containsKey(name)) {
