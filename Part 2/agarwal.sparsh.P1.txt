@@ -1,0 +1,4 @@
+This program can be invoked by compiling the P1.java file by using the commands in cmd:
+javac *.java
+after the file has been compiled execute the compiled file using the commands:
+java P1
