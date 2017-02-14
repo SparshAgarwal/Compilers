@@ -65,7 +65,7 @@ class CharNum {
 %%
 
 DIGIT=        [0-9]
-WHITESPACE=   [\040\t]
+WHITESPACE=   [ \t]
 LETTER=   [A-Za-z]
 UNDERSCORE= '_'
 STRING_QUOTE =  [\"]
