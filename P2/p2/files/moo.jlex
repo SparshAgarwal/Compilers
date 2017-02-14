@@ -144,12 +144,22 @@ return new Symbol(sym.EOF);
 					return S;
 		}
 
-{DIGIT}+  { 
-					int val = (new Integer(yytext())).intValue();
-					Symbol S = new Symbol(sym.INTLITERAL,
-									 new IntLitTokenVal(yyline+1, CharNum.num, val));
-					CharNum.num += yytext().length();
-					return S;
+{DIGIT}+  {
+                    double d = (new Double(yytext())).doubleValue();
+                    if(d<=Integer.MAX_VALUE){
+                        int val = (new Integer(yytext())).intValue();
+                        Symbol S = new Symbol(sym.INTLITERAL,
+                                         new IntLitTokenVal(yyline+1, CharNum.num, val));
+                        CharNum.num += yytext().length();
+                        return S;
+					}
+					else{
+					    ErrMsg.warn(yy.line+1, CharNum.num, "integer literal too large; using max value");
+					    Symbol S = new Symbol(sym.INTLITERAL,
+                                              new IntLitTokenVal(yyline+1, CharNum.num, Integer.MAX_VALUE));
+                        CharNum.num += Integer.MAX_VALUE.length();
+                        return S;
+					}
 		}
 
 "{" { Symbol S = new Symbol(sym.LCURLY, new TokenVal(yyline+1, CharNum.num));
@@ -307,43 +317,3 @@ return new Symbol(sym.EOF);
 .		{ ErrMsg.fatal(yyline+1, CharNum.num,"unterminated string literal ignored";
 					CharNum.num++;
 		}
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// User Code
-class func{
-//fields
-static int linenum=0;
-static int totalcalls=0;
-//methods
-static void printcalls(){
-System.out.println(totalcalls);
-}
-Static void printlinenum(){
-System.out.println(linenum);}
-}
-%%
-// Directives
-// Your macro definitions go here
-WHITESPACE= [\040\t]
-NEXTLINE=“\n”
-POSSPREVCHAR=[,;=(<>&|!?*+-/]
-REQSTRING=”myFunc”
-POSSNEXTCHAR=”(”
-%implements java_cup.runtime.Scanner
-%function next_token
-%type java_cup.runtime.Symbol
-// End of file behavior
-%eofval{
-func.printcalls();
-%eofval}
-// Turn on line counting
-%line
-%%
-// Regular expressions rules
-({NEXTLINE}|{WHITESPACE}|{POSSPREVCHAR})+{REQSTRING}{WHITESPACE}*{POSSNE
-XTCHAR}
-{func.linenum=yy.line;
-func.totalcalls++;
-func.printlinenum();}
