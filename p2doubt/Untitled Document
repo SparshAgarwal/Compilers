@@ -1,0 +1,58 @@
+class stringliteral{
+	public static String strVal;
+	public static String error;
+	public static int line;
+	public static int column;
+		error = new String();
+}
+
+
+%state QOUTED_STR_STATE
+%state B_SLASH_STATE
+
+<YYINITIAL>{STRING_QUOTE} { 
+					yybegin(QUOTED_STR_STATE);
+					stringliteral.strval = new String(yytext());
+					stringliteral.line = yyline+1;
+					stringliteral.column = CharNum.num;
+		}
+<QOUTED_STR_STATE>{[^\n\"\\]*} {  
+					stringliteral.strval += yytext();
+		}
+<QOUTED_STR_STATE>{[\\]} { 
+					yybegin(B_SLASH_STATE);
+					stringliteral.strval += yytext();
+		}
+<B_SLASH_STATE>{[nt\'\"\?\\]} {
+					yybegin(QOUTED_STR_STATE);
+					stringliteral.strval += yytext();
+		}
+<QOUTED_STR_STATE>{STRING_QUOTE} {
+					yybegin(YYINITIAL);
+					stringliteral.strval += yytext();
+					if(!stringliteral.error){
+						Symbol S = new Symbol(sym.STRINGLITERAL,
+												 new IntLitTokenVal(yyline+1, CharNum.num, stringliteral.strval));
+						CharNum.num += stringliteral.strval.length();
+						return S;
+						}
+					else{
+						ErrMsg.fatal(stringliteral.line, stringliteral.column, stringliteral.error);
+						CharNum.num += stringliteral.strval.length();
+					}
+		}
+<QOUTED_STR_STATE> {
+					yybegin(YYINITIAL); 
+					if(!stringliteral.error){
+						stringliteral.error = "unterminated string literal ignored";
+						}
+					else{
+						stringliteral.error = "unterminated string literal with bad escaped character ignored";
+						}
+					ErrMsg.fatal(stringliteral.line, stringliteral.column, stringliteral.error);
+					CharNum.num += stringliteral.strval.length();
+		}  
+<B_SLASH_STATE> {
+					yybegin(QOUTED_STR_STATE);
+					stringliteral.error =  "string literal with bad escaped character ignored";
+		}

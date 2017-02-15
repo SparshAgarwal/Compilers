@@ -13,7 +13,8 @@ if
 else
 while
 return
-_xhmg
+_
+xhmg
 lfxn
 x_fxb435
 34_sssgf
@@ -23,19 +24,24 @@ x_fxb435
 "unterminated
 "also unterminated \"
 "backslash followed by space: \ is not allowed"
+lfxn
 "bad escaped character: \a AND not terminated
+lfxn
+"bad escaped character: \
+a
 ""
 "&!88"
 "use \n to denote a newline character"
 "include a quote like this \" and a backslash like this \\"
 {
 }
-(
+M(
 )
 ;
 ,
 .
 <<
+(
 >>
 ++
 --
@@ -45,6 +51,7 @@ x_fxb435
 /
 !
 &&
+
 //xcvb,jnxlvxfbv
 ||
 ==
@@ -56,7 +63,8 @@ x_fxb435
 <=
 >=
 =
-{}(    );,.<<>>+++---*/!&&||
+{}
+;,.<<>>+++---*/!&&||
 !====
 <<<=
 =>>>===
