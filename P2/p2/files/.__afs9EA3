@@ -60,10 +60,10 @@ class CharNum {
 
 DIGIT=        [0-9]
 WHITESPACE=   [ \t]
-LPAREN = "("
-RPAREN = ")"
+LPAREN = ")"
+RPAREN = "("
 STRING_QUOTE =  [\"]
-COMMENT = [//#]
+COMMENT = [(//)#]
 
 %implements java_cup.runtime.Scanner
 %function next_token
