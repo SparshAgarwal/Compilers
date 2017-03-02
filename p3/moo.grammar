@@ -11,56 +11,56 @@ declList        ::= declList decl     //done
 decl            ::= varDecl           //done
                 | fnDecl              //done
                 | structDecl          //done// struct definitions only at top level
-                ;
+                ;                     //done
 
-varDeclList     ::= varDeclList varDecl
-                | /* epsilon */
-                ;
+varDeclList     ::= varDeclList varDecl //done
+                | /* epsilon */         //done
+                ;                       //done
 
-varDecl         ::= type id SEMICOLON
-                | STRUCT id id SEMICOLON
-                ;
+varDecl         ::= type id SEMICOLON     //done
+                | STRUCT id id SEMICOLON  //done
+                ;                         //done
 
-fnDecl          ::= type id formals fnBody
-                ;
+fnDecl          ::= type id formals fnBody //done
+                ;                          //done
                 
 structDecl      ::= STRUCT id LCURLY structBody RCURLY SEMICOLON //done
                 ;                                                //done
                 
 structBody      ::= structBody varDecl                           //done
                 | varDecl                                        //done
-                ;
+                ;                                                //done
                 
-formals         ::= LPAREN RPAREN
-                | LPAREN formalsList RPAREN
-                ;
+formals         ::= LPAREN RPAREN                              //done
+                | LPAREN formalsList RPAREN                    //done  
+                ;                                              //done
 
-formalsList     ::= formalDecl
-                | formalDecl COMMA formalsList
-                ;
+formalsList     ::= formalDecl                                 //done
+                | formalDecl COMMA formalsList                 //done
+                ;                                              //done
 
-formalDecl      ::= type id        // note: no struct parameters
-                ;
+formalDecl      ::= type id      // note: no struct parameters //done
+                ;                                              //done
 
-fnBody          ::= LCURLY varDeclList stmtList RCURLY
-                ;
+fnBody          ::= LCURLY varDeclList stmtList RCURLY         //done
+                ;                                              //done
 
-stmtList        ::= stmtList stmt
-                | /* epsilon */
-                ;
+stmtList        ::= stmtList stmt                              //done
+                | /* epsilon */                                //done
+                ;                                              //done
 
-stmt            ::= assignExp SEMICOLON
-                | loc PLUSPLUS SEMICOLON
-                | loc MINUSMINUS SEMICOLON
-                | CIN READ loc SEMICOLON
-                | COUT WRITE exp SEMICOLON
-                | IF LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY
+stmt            ::= assignExp SEMICOLON                        //done
+                | loc PLUSPLUS SEMICOLON                       //done
+                | loc MINUSMINUS SEMICOLON                     //done
+                | CIN READ loc SEMICOLON                       //done
+                | COUT WRITE exp SEMICOLON                     //done
+                | IF LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY                                           
                 | IF LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY ELSE LCURLY varDeclList stmtList RCURLY
                 | WHILE LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY
-                | RETURN exp SEMICOLON
-                | RETURN SEMICOLON
-                | fncall SEMICOLON
-                ;
+                | RETURN exp SEMICOLON                         //done
+                | RETURN SEMICOLON                             //done
+                | fncall SEMICOLON                             //done
+                ;                                              //done
 
 assignExp       ::= loc ASSIGN exp
                 ;
@@ -100,14 +100,14 @@ actualList      ::= exp
                 | actualList COMMA exp
                 ;
 
-type            ::= INT
-                | BOOL
-                | VOID
-                ;
+type            ::= INT                                                   //done
+                | BOOL                                                    //done
+                | VOID                                                    //done
+                ;                                                         //done
 
 loc             ::= id
                 | loc DOT id
 
-id              ::= ID
-                ;
+id              ::= ID                                                    //done
+                ;                                                         //done
 

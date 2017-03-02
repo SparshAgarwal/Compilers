@@ -137,8 +137,25 @@ decl            ::= varDecl:v
                 :}
                 ;
 
+varDeclList     ::= varDeclList:vl varDecl:v
+                {: vl.addLast(v);
+                   RESULT = vl;
+                :}
+                | /* epsilon */
+                {: RESULT = new LinkedList<DeclNode>();
+                :}
+                ;
+
 varDecl         ::= type:t id:i SEMICOLON
                 {: RESULT = new VarDeclNode(t, i, VarDeclNode.NOT_STRUCT);
+                :}
+                | STRUCT id:sN id:i SEMICOLON
+                {: RESULT = new VarDeclNode(new StructNode(sN), i, 0);
+                :}
+                ;
+
+fnDecl          ::= type:t id:i formals:f fnBody:fB
+                {: RESULT = new FnDeclNode(t, i, new f, fB);
                 :}
                 ;
 
@@ -156,6 +173,100 @@ structBody      ::= structBody:sB varDecl:v
                    sB.add(v);
                    RESULT = sB;
                 :}
+                ;
+                
+formals         ::= LPAREN RPAREN
+                {: RESULT = new FormalsListNode(new LinkedList<DeclNode>());
+                :}
+                | LPAREN formalsList:fl RPAREN
+                {: RESULT = new FormalsListNode(fl);
+                :}
+                ;
+
+formalsList     ::= formalDecl:f
+                {: fl = new LinkedList<DeclNode>();
+                   fl.addLast(f)l
+                   RESULT = fl; 
+                :}
+                | formalDecl:f COMMA formalsList:fl
+                {: fl.addLast(f);
+                   RESULT = fl; 
+                :}
+                ;
+
+formalDecl      ::= type:t id:i        // note: no struct parameters
+                {:  RESULT = new FormalDeclNode(t,i);
+                :}
+                ;
+
+fnBody          ::= LCURLY varDeclList:vl stmtList:sl RCURLY
+                {: RESULT = new FnBodyNode(new DeclListNode(vl), new StmtListNode(sl));
+                :}
+                ;
+
+stmtList        ::= stmtList:sl stmt:s
+                {: sl.addLast(s);
+                   RESLUT = sl; 
+                :}
+                | /* epsilon */
+                {: RESULT = new LinkedList<StmtNode>();
+                :}
+                ;
+
+stmt            ::= assignExp:ae SEMICOLON
+                {: RESULT = new AssignStmtNode(ae);
+                :}
+                | loc:l PLUSPLUS SEMICOLON
+                {: RESULT = new PostIncStmtNode(l);
+                :}
+                | loc:l MINUSMINUS SEMICOLON
+                {: RESULT = new PostDecStmtNode(l);
+                :}
+                | CIN READ loc:l SEMICOLON
+                {: RESULT = new ReadStmtNode(l);
+                :}
+                | COUT WRITE exp:e SEMICOLON
+                {: RESULT = new WriteStmtNode(e);
+                :}
+                | IF LPAREN exp:e RPAREN LCURLY varDeclList:vl stmtList:sl RCURLY
+                {: RESULT = new IfStmtNode(e, new DeclListNode(vl), new StmtListNode(sl));
+                :}
+                | IF LPAREN exp:e RPAREN LCURLY varDeclList:vl1 stmtList:sl1 RCURLY ELSE LCURLY varDeclList:vl2 stmtList:sl2 RCURLY
+                {: RESULT = new IfElseStmtNode(e, new DeclListNode(vl1), new StmtListNode(sl1), new DeclListNode(vl2), new StmtListNode(sl2));
+                :}
+                | WHILE LPAREN exp:e RPAREN LCURLY varDeclList:vl stmtList:sl RCURLY
+                {: RESULT = new WhileStmtNode(e, new DeclListNode(vl), new StmtListNode(sl));
+                :}
+                | RETURN exp:e SEMICOLON
+                {: RESULT = new ReturnStmtNode(e);
+                :}
+                | RETURN SEMICOLON
+                {: RESULT = new ReadStmtNode(new ExpNode());
+                :}
+                | fncall:fc SEMICOLON
+                {: RESULT = new CallStmtNode(fc);
+                :}
+                ;
+
+assignExp       ::= loc ASSIGN exp
+                ;
+                
+exp             ::= assignExp
+                | exp PLUS exp
+                | exp MINUS exp
+                | exp TIMES exp
+                | exp DIVIDE exp
+                | NOT exp
+                | exp AND exp
+                | exp OR exp
+                | exp EQUALS exp
+                | exp NOTEQUALS exp
+                | exp LESS exp
+                | exp GREATER exp
+                | exp LESSEQ exp
+                | exp GREATEREQ exp
+                | MINUS term
+                | term
                 ;
 
 type            ::= INT

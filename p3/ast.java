@@ -19,39 +19,39 @@ import java.util.*;
 //
 //     Subclass            Kids
 //     --------            ----
-//     ProgramNode         DeclListNode
-//     DeclListNode        linked list of DeclNode
+//     ProgramNode         DeclListNode                                   //done
+//     DeclListNode        linked list of DeclNode                        //done
 //     DeclNode:
-//       VarDeclNode       TypeNode, IdNode, int
-//       FnDeclNode        TypeNode, IdNode, FormalsListNode, FnBodyNode
-//       FormalDeclNode    TypeNode, IdNode
-//       StructDeclNode    IdNode, DeclListNode    //done
+//       VarDeclNode       TypeNode, IdNode, int                          //done            
+//       FnDeclNode        TypeNode, IdNode, FormalsListNode, FnBodyNode  //done
+//       FormalDeclNode    TypeNode, IdNode                               //done
+//       StructDeclNode    IdNode, DeclListNode                           //done
 //
-//     FormalsListNode     linked list of FormalDeclNode
-//     FnBodyNode          DeclListNode, StmtListNode
-//     StmtListNode        linked list of StmtNode
-//     ExpListNode         linked list of ExpNode
+//     FormalsListNode     linked list of FormalDeclNode                  //done
+//     FnBodyNode          DeclListNode, StmtListNode                     //done
+//     StmtListNode        linked list of StmtNode                        //done
+//     ExpListNode         linked list of ExpNode                         //left
 //
-//     TypeNode:
-//       IntNode           -- none --  //done
-//       BoolNode          -- none --  //done
-//       VoidNode          -- none --  //done
-//       StructNode        IdNode     
+//     TypeNode:                                                          //done
+//       IntNode           -- none --                                     //done
+//       BoolNode          -- none --                                     //done
+//       VoidNode          -- none --                                     //done
+//       StructNode        IdNode                                         //done
 //
-//     StmtNode:
-//       AssignStmtNode      AssignNode
-//       PostIncStmtNode     ExpNode
-//       PostDecStmtNode     ExpNode
-//       ReadStmtNode        ExpNode
-//       WriteStmtNode       ExpNode
-//       IfStmtNode          ExpNode, DeclListNode, StmtListNode
-//       IfElseStmtNode      ExpNode, DeclListNode, StmtListNode,
-//                                    DeclListNode, StmtListNode
-//       WhileStmtNode       ExpNode, DeclListNode, StmtListNode
-//       CallStmtNode        CallExpNode
-//       ReturnStmtNode      ExpNode
+//     StmtNode:                                                          //done
+//       AssignStmtNode      AssignNode                                   //done
+//       PostIncStmtNode     ExpNode                                      //done
+//       PostDecStmtNode     ExpNode                                      //done
+//       ReadStmtNode        ExpNode                                      //done
+//       WriteStmtNode       ExpNode                                      //done
+//       IfStmtNode          ExpNode, DeclListNode, StmtListNode          //done
+//       IfElseStmtNode      ExpNode, DeclListNode, StmtListNode,         //done
+//                                    DeclListNode, StmtListNode          //done
+//       WhileStmtNode       ExpNode, DeclListNode, StmtListNode          //done
+//       CallStmtNode        CallExpNode                                  //done
+//       ReturnStmtNode      ExpNode                                      //done
 //
-//     ExpNode:
+//     ExpNode:                                                           //done
 //       IntLitNode          -- none --
 //       StringLitNode       -- none --
 //       TrueNode            -- none --
