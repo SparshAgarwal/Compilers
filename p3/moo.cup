@@ -1,0 +1,176 @@
+/**********************************************************************
+ Java CUP specification for a parser for moo programs
+ **********************************************************************/
+
+import java_cup.runtime.*;
+import java.util.*;
+
+/* The code below redefines method syntax_error to give better error messages
+ * than just "Syntax error"
+ */
+parser code {:
+
+public void syntax_error(Symbol currToken) {
+    if (currToken.value == null) {
+        ErrMsg.fatal(0,0, "Syntax error at end of file");
+    }
+    else {
+        ErrMsg.fatal(((TokenVal)currToken.value).linenum,
+                     ((TokenVal)currToken.value).charnum,
+                     "Syntax error");
+    }
+    System.exit(-1);
+}
+:};
+
+
+/* Terminals (tokens returned by the scanner) 
+ */
+terminal TokenVal       INT;  //done
+terminal TokenVal       BOOL; //done
+terminal TokenVal       VOID; //done
+terminal TokenVal       TRUE; 
+terminal TokenVal       FALSE; 
+terminal TokenVal       STRUCT;
+terminal TokenVal       CIN;
+terminal TokenVal       COUT;
+terminal TokenVal       IF;
+terminal TokenVal       ELSE;
+terminal TokenVal       WHILE;
+terminal TokenVal       RETURN;
+terminal IdTokenVal     ID;
+terminal IntLitTokenVal INTLITERAL;
+terminal StrLitTokenVal STRINGLITERAL;
+terminal TokenVal       LCURLY;
+terminal TokenVal       RCURLY;
+terminal TokenVal       LPAREN;
+terminal TokenVal       RPAREN;
+terminal TokenVal       SEMICOLON;
+terminal TokenVal       COMMA;
+terminal TokenVal       DOT;
+terminal TokenVal       WRITE;
+terminal TokenVal       READ;
+terminal TokenVal       PLUSPLUS;
+terminal TokenVal       MINUSMINUS;
+terminal TokenVal       PLUS;
+terminal TokenVal       MINUS;
+terminal TokenVal       TIMES;
+terminal TokenVal       DIVIDE;
+terminal TokenVal       NOT;
+terminal TokenVal       AND;
+terminal TokenVal       OR;
+terminal TokenVal       EQUALS;
+terminal TokenVal       NOTEQUALS;
+terminal TokenVal       LESS;
+terminal TokenVal       GREATER;
+terminal TokenVal       LESSEQ;
+terminal TokenVal       GREATEREQ;
+terminal TokenVal       ASSIGN;
+
+
+/* Nonterminals
+ */
+non terminal ProgramNode      program;       //done
+non terminal LinkedList       declList;      //done
+non terminal DeclNode         decl;          //done
+non terminal VarDeclList      varDeclList;
+non terminal VarDeclNode      varDecl;
+non terminal FnDeclNode       fnDecl;        
+non terminal StructDeclNode   structDecl;    //done
+non terminal LinkedList       structBody;    //done
+non terminal Formals          formals;
+non terminal LinkedList       formalsList;
+non terminal FormalDecl       formalDecl;
+non terminal FnBody           fnBody;
+non terminal LinkedList       stmtList;
+non terminal Stmt             stmt;
+non terminal AssignExp        assignExp;
+non terminal Exp              exp;
+non terminal Term             term;
+non terminal Fncall           fncall;
+non terminal ActualList       actualList;
+non terminal TypeNode         type;           //done
+non terminal Loc              loc;
+non terminal IdNode           id;             //done
+ 
+ 
+/* Precedence and associativity declarations 
+*/
+precedence left DOT;
+precedence right ASSIGN;
+precedence left OR;
+precedence left AND;
+precedence nonassoc LESSEQ,GREATEREQ,GREATER,LESS,EQUALS,NOTEQUALS;
+precedence left PLUS,MINUS;
+precedence left TIMES,DIVIDE;
+precedence nonassoc NOT;
+
+start with program;
+
+
+/* Grammar with actions
+ *
+ * NOTE: add more grammar rules below
+ */
+program         ::= declList: d
+                {: RESULT = new ProgramNode(new DeclListNode(d));
+                :}
+                ;
+
+declList        ::= declList:dl decl:d
+                {: dl.addLast(d);
+                   RESULT = dl;
+                :}
+                | /* epsilon */
+                {: RESULT = new LinkedList<DeclNode>();
+                :}
+                ;
+
+decl            ::= varDecl:v
+                {: RESULT = v;
+                :}
+                |fnDecl:f
+                {: RESULT = f;
+                :}
+                |structDecl:s
+                {: RESULT = s;
+                :}
+                ;
+
+varDecl         ::= type:t id:i SEMICOLON
+                {: RESULT = new VarDeclNode(t, i, VarDeclNode.NOT_STRUCT);
+                :}
+                ;
+
+structDecl      ::= STRUCT id:i LCURLY structBody:sB RCURLY SEMICOLON
+                {: RESULT = new StructDeclNode(i,new DeclListNode(sB));
+                :}
+                ;
+
+structBody      ::= structBody:sB varDecl:v
+                {: sB.addLast(v);
+                   RESULT = sB;
+                :}
+                | varDecl:v
+                {: LinkedList sB = new LinkedList<DeclNode>();
+                   sB.add(v);
+                   RESULT = sB;
+                :}
+                ;
+
+type            ::= INT
+                {: RESULT = new IntNode();
+                :}
+                | BOOL
+                {: RESULT = new BoolNode();
+                :}
+                | VOID
+                {: RESULT = new VoidNode();
+                :}
+                ;
+
+id              ::= ID:i
+                {: RESULT = new IdNode(i.linenum, i.charnum, i.idVal);
+                :}
+                ;
+				
