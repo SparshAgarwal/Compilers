@@ -183,11 +183,11 @@ formals         ::= LPAREN RPAREN
 
 formalsList     ::= formalDecl:f
                 {: LinkedList fl = new LinkedList<FormalDeclNode>();
-                   fl.addLast(f);
+                   fl.addFirst(f);
                    RESULT = fl; 
                 :}
                 | formalDecl:f COMMA formalsList:fl
-                {: fl.addLast(f);
+                {: fl.addFirst(f);
                    RESULT = fl; 
                 :}
                 ;
@@ -325,7 +325,7 @@ term            ::= loc:l
                 ;
 
 fncall          ::=  id:i LPAREN RPAREN   // fn call with no args
-                {: RESULT = new CallExpNode(i, null);
+                {: RESULT = new CallExpNode(i);
                 :}
                 | id:i LPAREN actualList:al RPAREN  // with args
                 {: RESULT = new CallExpNode(i, new ExpListNode(al));

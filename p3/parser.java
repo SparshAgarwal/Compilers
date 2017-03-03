@@ -674,7 +674,7 @@ class CUP$parser$actions {
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		FormalDeclNode f = (FormalDeclNode)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 LinkedList fl = new LinkedList<FormalDeclNode>();
-                   fl.addLast(f);
+                   fl.addFirst(f);
                    RESULT = fl; 
                 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("formalsList",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -691,7 +691,7 @@ class CUP$parser$actions {
 		int flleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int flright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		LinkedList fl = (LinkedList)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 fl.addLast(f);
+		 fl.addFirst(f);
                    RESULT = fl; 
                 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("formalsList",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -1279,7 +1279,7 @@ class CUP$parser$actions {
 		int ileft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int iright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		IdNode i = (IdNode)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-		 RESULT = new CallExpNode(i, null);
+		 RESULT = new CallExpNode(i);
                 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("fncall",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
