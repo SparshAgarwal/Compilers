@@ -30,7 +30,7 @@ import java.util.*;
 //     FormalsListNode     linked list of FormalDeclNode                  //done
 //     FnBodyNode          DeclListNode, StmtListNode                     //done
 //     StmtListNode        linked list of StmtNode                        //done
-//     ExpListNode         linked list of ExpNode                         //left
+//     ExpListNode         linked list of ExpNode                         //done
 //
 //     TypeNode:                                                          //done
 //       IntNode           -- none --                                     //done
@@ -52,30 +52,30 @@ import java.util.*;
 //       ReturnStmtNode      ExpNode                                      //done
 //
 //     ExpNode:                                                           //done
-//       IntLitNode          -- none --
-//       StringLitNode       -- none --
-//       TrueNode            -- none --
-//       FalseNode           -- none --
-//       IdNode              -- none --
-//       DotAccessExpNode    ExpNode, IdNode
-//       AssignNode          ExpNode, ExpNode
-//       CallExpNode         IdNode, ExpListNode
-//       UnaryExpNode        ExpNode
-//         UnaryMinusNode
-//         NotNode
-//       BinaryExpNode       ExpNode ExpNode
-//         PlusNode     
-//         MinusNode
-//         TimesNode
-//         DivideNode
-//         AndNode
-//         OrNode
-//         EqualsNode
-//         NotEqualsNode
-//         LessNode
-//         GreaterNode
-//         LessEqNode
-//         GreaterEqNode
+//       IntLitNode          -- none --                                   //done
+//       StringLitNode       -- none --                                   //done
+//       TrueNode            -- none --                                   //done
+//       FalseNode           -- none --                                   //done
+//       IdNode              -- none --                                   //done
+//       DotAccessExpNode    ExpNode, IdNode                             //done
+//       AssignNode          ExpNode, ExpNode                            //done
+//       CallExpNode         IdNode, ExpListNode                         //done
+//       UnaryExpNode        ExpNode                                     //done    
+//         UnaryMinusNode                                                //done
+//         NotNode                                                       //done
+//       BinaryExpNode       ExpNode ExpNode                             //done
+//         PlusNode                                                      //done
+//         MinusNode                                                     //done
+//         TimesNode                                                     //done
+//         DivideNode                                                    //done
+//         AndNode                                                       //done
+//         OrNode                                                        //done
+//         EqualsNode                                                    //done
+//         NotEqualsNode                                                 //done
+//         LessNode                                                      //done
+//         GreaterNode                                                   //done
+//         LessEqNode                                                    //done
+//         GreaterEqNode                                                 //done
 //
 // Here are the different kinds of AST nodes again, organized according to
 // whether they are leaves, internal nodes with linked lists of kids, or
@@ -160,6 +160,9 @@ class FormalsListNode extends ASTnode {
     }
 
     public void unparse(PrintWriter p, int indent) {
+        // p.print("(");
+        // myFormals.unparse(p,indent);
+        // p.print(")");
     }
 
     // list of kids (FormalDeclNodes)
@@ -173,6 +176,10 @@ class FnBodyNode extends ASTnode {
     }
 
     public void unparse(PrintWriter p, int indent) {
+        // p.print(" {\n");
+        // myDeclList.unparse(p,indent+1);
+        // myStmtList.unparse(p,indent+1);
+        // p.print("\n}");
     }
 
     // 2 kids
@@ -276,8 +283,9 @@ class StructDeclNode extends DeclNode {
     }
 
     public void unparse(PrintWriter p, int indent) {
+        doIndent(p, indent);
         p.print("struct ");
-        myId.unparse(p,indent);
+        myId.unparse(p,0);
         p.print(" {\n");
         myDeclList.unparse(p,indent+4);
         p.print("};");
