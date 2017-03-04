@@ -19,63 +19,63 @@ import java.util.*;
 //
 //     Subclass            Kids
 //     --------            ----
-//     ProgramNode         DeclListNode                                   //done
-//     DeclListNode        linked list of DeclNode                        //done
+//     ProgramNode         DeclListNode                                   
+//     DeclListNode        linked list of DeclNode                        
 //     DeclNode:
-//       VarDeclNode       TypeNode, IdNode, int                          //done            
-//       FnDeclNode        TypeNode, IdNode, FormalsListNode, FnBodyNode  //done
-//       FormalDeclNode    TypeNode, IdNode                               //done
-//       StructDeclNode    IdNode, DeclListNode                           //done
+//       VarDeclNode       TypeNode, IdNode, int                                    
+//       FnDeclNode        TypeNode, IdNode, FormalsListNode, FnBodyNode  
+//       FormalDeclNode    TypeNode, IdNode                               
+//       StructDeclNode    IdNode, DeclListNode                           
 //
-//     FormalsListNode     linked list of FormalDeclNode                  //done
-//     FnBodyNode          DeclListNode, StmtListNode                     //done
-//     StmtListNode        linked list of StmtNode                        //done
-//     ExpListNode         linked list of ExpNode                         //done
+//     FormalsListNode     linked list of FormalDeclNode                  
+//     FnBodyNode          DeclListNode, StmtListNode                     
+//     StmtListNode        linked list of StmtNode                        
+//     ExpListNode         linked list of ExpNode                         
 //
-//     TypeNode:                                                          //done
-//       IntNode           -- none --                                     //done
-//       BoolNode          -- none --                                     //done
-//       VoidNode          -- none --                                     //done
-//       StructNode        IdNode                                         //done
+//     TypeNode:                                                          
+//       IntNode           -- none --                                     
+//       BoolNode          -- none --                                     
+//       VoidNode          -- none --                                     
+//       StructNode        IdNode                                         
 //
-//     StmtNode:                                                          //done
-//       AssignStmtNode      AssignNode                                   //done
-//       PostIncStmtNode     ExpNode                                      //done
-//       PostDecStmtNode     ExpNode                                      //done
-//       ReadStmtNode        ExpNode                                      //done
-//       WriteStmtNode       ExpNode                                      //done
-//       IfStmtNode          ExpNode, DeclListNode, StmtListNode          //done
-//       IfElseStmtNode      ExpNode, DeclListNode, StmtListNode,         //done
-//                                    DeclListNode, StmtListNode          //done
-//       WhileStmtNode       ExpNode, DeclListNode, StmtListNode          //done
-//       CallStmtNode        CallExpNode                                  //done
-//       ReturnStmtNode      ExpNode                                      //done
+//     StmtNode:                                                          
+//       AssignStmtNode      AssignNode                                   
+//       PostIncStmtNode     ExpNode                                      
+//       PostDecStmtNode     ExpNode                                      
+//       ReadStmtNode        ExpNode                                      
+//       WriteStmtNode       ExpNode                                      
+//       IfStmtNode          ExpNode, DeclListNode, StmtListNode          
+//       IfElseStmtNode      ExpNode, DeclListNode, StmtListNode,         
+//                                    DeclListNode, StmtListNode          
+//       WhileStmtNode       ExpNode, DeclListNode, StmtListNode          
+//       CallStmtNode        CallExpNode                                  
+//       ReturnStmtNode      ExpNode                                      
 //
-//     ExpNode:                                                           //done
-//       IntLitNode          -- none --                                   //done
-//       StringLitNode       -- none --                                   //done
-//       TrueNode            -- none --                                   //done
-//       FalseNode           -- none --                                   //done
-//       IdNode              -- none --                                   //done
-//       DotAccessExpNode    ExpNode, IdNode                             //done
-//       AssignNode          ExpNode, ExpNode                            //done
-//       CallExpNode         IdNode, ExpListNode                         //done
-//       UnaryExpNode        ExpNode                                     //done    
-//         UnaryMinusNode                                                //done
-//         NotNode                                                       //done
-//       BinaryExpNode       ExpNode ExpNode                             //done
-//         PlusNode                                                      //done
-//         MinusNode                                                     //done
-//         TimesNode                                                     //done
-//         DivideNode                                                    //done
-//         AndNode                                                       //done
-//         OrNode                                                        //done
-//         EqualsNode                                                    //done
-//         NotEqualsNode                                                 //done
-//         LessNode                                                      //done
-//         GreaterNode                                                   //done
-//         LessEqNode                                                    //done
-//         GreaterEqNode                                                 //done
+//     ExpNode:                                                           
+//       IntLitNode          -- none --                                   
+//       StringLitNode       -- none --                                   
+//       TrueNode            -- none --                                   
+//       FalseNode           -- none --                                   
+//       IdNode              -- none --                                   
+//       DotAccessExpNode    ExpNode, IdNode                             
+//       AssignNode          ExpNode, ExpNode                            
+//       CallExpNode         IdNode, ExpListNode                         
+//       UnaryExpNode        ExpNode                                       
+//         UnaryMinusNode                                                
+//         NotNode                                                       
+//       BinaryExpNode       ExpNode ExpNode                             
+//         PlusNode                                                      
+//         MinusNode                                                     
+//         TimesNode                                                     
+//         DivideNode                                                    
+//         AndNode                                                       
+//         OrNode                                                        
+//         EqualsNode                                                    
+//         NotEqualsNode                                                 
+//         LessNode                                                      
+//         GreaterNode                                                   
+//         LessEqNode                                                    
+//         GreaterEqNode                                                 
 //
 // Here are the different kinds of AST nodes again, organized according to
 // whether they are leaves, internal nodes with linked lists of kids, or
@@ -191,7 +191,7 @@ class FnBodyNode extends ASTnode {
         p.print("{\n");
         myDeclList.unparse(p,indent+4);
         myStmtList.unparse(p,indent+4);
-        p.print("\n}");
+        p.print("}");
     }
 
     // 2 kids
@@ -208,7 +208,9 @@ class StmtListNode extends ASTnode {
         Iterator it = myStmts.iterator();
         try {
             while (it.hasNext()) {
+                doIndent(p, indent);
                 ((StmtNode)it.next()).unparse(p, indent);
+                p.print("\n");
             }
         } catch (NoSuchElementException ex) {
             System.err.println("unexpected NoSuchElementException in StmtListNode.print");
@@ -677,9 +679,15 @@ class AssignNode extends ExpNode {
     }
 
     public void unparse(PrintWriter p, int indent) {
+        if(indent==-2){
+            p.print("(");
+        }
         myLhs.unparse(p,indent);
         p.print("=");
-        myExp.unparse(p,indent);
+        myExp.unparse(p,-2);
+        if(indent==-2){
+            p.print(")");
+        }
     }
 
     // 2 kids

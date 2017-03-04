@@ -9,4 +9,8 @@ struct s {
 int ab (int a){
     struct s s1;
     int c;
-c=(((((-s1)+7)+(!c))-6)-((5*8)/a));}
+    int b;
+    int d;
+    c=(((((-s1)+7)+(!c))-6)-((5*8)/a));
+    c=(b=(d=0));
+}

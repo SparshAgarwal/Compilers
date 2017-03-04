@@ -26,9 +26,9 @@ public void syntax_error(Symbol currToken) {
 
 /* Terminals (tokens returned by the scanner) 
  */
-terminal TokenVal       INT;  
-terminal TokenVal       BOOL; 
-terminal TokenVal       VOID; 
+terminal                INT;  
+terminal                BOOL; 
+terminal                VOID; 
 terminal TokenVal       TRUE; 
 terminal TokenVal       FALSE; 
 terminal                STRUCT;
