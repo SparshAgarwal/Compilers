@@ -902,7 +902,7 @@ class CUP$parser$actions {
           case 32: // stmt ::= RETURN SEMICOLON 
             {
               StmtNode RESULT =null;
-		 RESULT = new ReadStmtNode(null);
+		 RESULT = new ReturnStmtNode(null);
                 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("stmt",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }

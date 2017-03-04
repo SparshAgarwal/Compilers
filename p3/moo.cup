@@ -239,7 +239,7 @@ stmt            ::= assignExp:ae SEMICOLON
                 {: RESULT = new ReturnStmtNode(e);
                 :}
                 | RETURN SEMICOLON
-                {: RESULT = new ReadStmtNode(null);
+                {: RESULT = new ReturnStmtNode(null);
                 :}
                 | fncall:fc SEMICOLON
                 {: RESULT = new CallStmtNode(fc);
