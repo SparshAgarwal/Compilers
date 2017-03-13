@@ -1,0 +1,76 @@
+int x;
+int y;
+void x;
+bool x;
+struct s {
+	int y;
+	int x;
+};
+int ab() {
+	struct s s1;
+	int c;
+	bool b;
+	void d;
+	c = -s1+7!=c+!c-6-5*u&&8/a||i;
+	c =b = d =0;
+}
+int fgb(int cs, bool t, void tr) {
+	struct s s1;
+	int c;
+	bool b;
+	void d;
+	c = -s1&&7||6;
+	c = -s1&&7&&6;
+	d = f==y/g;
+	e = f||8||x;
+	g = k!=c-6;
+	u = p.y.e<=5*8;
+	p = q>=a;
+	c = b.u.t = d = 0;
+}
+struct Person {
+	bool name;
+	int age;
+	void salary;
+};
+int max(int num1, int num2) {
+	int result;
+	if (num1 > num2){
+		result = num1;
+	}
+	else {
+		result = num2;
+    }
+    return result; 
+}
+// Precedence and associativity declarations 
+int main() {
+	int p1;
+	cout << "Enter Full name: ";
+	cout << "Enter age: ";
+	cin >> p1.age;
+	cout << "Enter salary: ";
+	cin >> p1.salary;
+	cout << "\nDisplaying Information.";
+	cout << "Name: ";
+	cout << p1.f.t.y.t;
+	cout << p1.salary;
+	if (b == -1) { x = 4+3*5-y; while (c) { y = y*2+x; } } else { x = 0; }
+	if(a < 20){
+		cout << "a is less than 20;";
+		max(a,b);
+	}
+	else { //xkhxflfxn
+		cout << "a is not less than 20;";
+	}
+	if(a>20){
+		cout << "a is less than 20;";
+		return;
+	}
+	while( a<20 ){
+		cout << "value of a: ";
+		a++;
+		b = ab()+5*3;
+	}
+	return 0;
+}
