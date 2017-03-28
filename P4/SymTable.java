@@ -17,10 +17,16 @@ public class SymTable {
             throw new EmptySymTableException();
         
         HashMap<String, SemSym> symTab = list.get(0);
-        if (symTab.containsKey(name))
-            throw new DuplicateSymException();
-        
-        symTab.put(name, sym);
+        try{
+            if (symTab.containsKey(name)){
+                throw new DuplicateSymException();
+            }
+            else{
+                symTab.put(name, sym);
+            }
+        }catch(DuplicateSymException d){
+            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Multiply declared identifier");
+        }   
     }
     
     public void addScope() {

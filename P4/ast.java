@@ -130,9 +130,9 @@ class ProgramNode extends ASTnode {
      * Creates an empty symbol table for the outermost scope, then processes
      * all of the globals, struct defintions, and functions in the program.
      */
-    public void nameAnalysis() {
+    public void nameAnalysis(); {
         SymTable symTab = new SymTable();
-        myDeclList.nameAnalysis();
+        myDeclList.nameAnalysis(symTab);
 	// TODO: Add code here 
     }
 
@@ -149,11 +149,11 @@ class DeclListNode extends ASTnode {
         myDecls = S;
     }
 
-    public void nameAnalysis() {
+    public void nameAnalysis(SymTable symTab); {
         Iterator it = myDecls.iterator();
         try {
             while (it.hasNext()) {
-                ((DeclNode)it.next()).nameAnalysis();
+                ((DeclNode)it.next()).nameAnalysis(symTab);
             }
         } catch (NoSuchElementException ex) {
             System.err.println("unexpected NoSuchElementException in DeclListNode.print");
@@ -182,10 +182,22 @@ class FormalsListNode extends ASTnode {
         myFormals = S;
     }
 
-    public void nameAnalysis() {
+    public void nameAnalysis(SymTable symTab); {
         Iterator<FormalDeclNode> it = myFormals.iterator();
         if (it.hasNext()) { // if there is at least one element
-            it.next().nameAnalysis();
+            while (it.hasNext()) {  // print the rest of the list
+                it.next().nameAnalysis(symTab);
+            }
+        }
+    }
+
+    public List<String> getTypes(){
+        List<String> formals;
+        Iterator<FormalDeclNode> it = myFormals.iterator();
+        if (it.hasNext()) { // if there is at least one element
+            while (it.hasNext()) {  // print the rest of the list
+                formals+=it.next().getType();
+            }
         }
     }
 
@@ -210,9 +222,9 @@ class FnBodyNode extends ASTnode {
         myStmtList = stmtList;
     }
 
-    public void nameAnalysis() {
-        myStmtList.nameAnalysis();
-        myDeclList.nameAnalysis();
+    public void nameAnalysis(SymTable symTab); {
+        myStmtList.nameAnalysis(symTab);
+        myDeclList.nameAnalysis(symTab);
     }
 
     public void unparse(PrintWriter p, int indent) {
@@ -230,6 +242,18 @@ class StmtListNode extends ASTnode {
         myStmts = S;
     }
 
+    public void nameAnalysis(SymTable symTab); {
+        Iterator it = myStmts.iterator();
+        try {
+            while (it.hasNext()) {
+                ((StmtNode)it.next()).nameAnalysis(symTab);
+            }
+        } catch (NoSuchElementException ex) {
+            System.err.println("unexpected NoSuchElementException in StmtListNode.print");
+            System.exit(-1);
+        }
+    }
+
     public void unparse(PrintWriter p, int indent) {
         Iterator<StmtNode> it = myStmts.iterator();
         while (it.hasNext()) {
@@ -244,6 +268,18 @@ class StmtListNode extends ASTnode {
 class ExpListNode extends ASTnode {
     public ExpListNode(List<ExpNode> S) {
         myExps = S;
+    }
+
+    public void nameAnalysis(SymTable symTab); {
+        Iterator it = myExps.iterator();
+        try {
+            while (it.hasNext()) {
+                ((ExpNode)it.next()).nameAnalysis(symTab);
+            }
+        } catch (NoSuchElementException ex) {
+            System.err.println("unexpected NoSuchElementException in ExpListNode.print");
+            System.exit(-1);
+        }
     }
 
     public void unparse(PrintWriter p, int indent) {
@@ -275,12 +311,9 @@ class VarDeclNode extends DeclNode {
         mySize = size;
     }
 
-    public void nameAnalysis() {
+    public void nameAnalysis(SymTable symTab); {
         if(myType.getSym().getType()=="void"){
             ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Non-function declared void");
-        }
-        else if(symTab.lookupLocal(myId.getStrVal())){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Multiply declared identifier");
         }
         else{
             symTab.addDecl(myId.getStrVal(), myType.getSym());    
@@ -314,19 +347,19 @@ class FnDeclNode extends DeclNode {
         myBody = body;
     }
 
-    public void nameAnalysis() {
+    public void nameAnalysis(SymTable symTab); {
         if(symTab.lookupLocal(myId.getStrVal())){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Multiply declared identifier");
             symTab.addScope();
-            myFormalsList.nameAnalysis();
-            myBody.nameAnalysis();
+            myFormalsList.nameAnalysis(symTab);
+            myBody.nameAnalysis(symTab);
             symTab.removeScope();
         }
         else{
-            symTab.addDecl(myId.getStrVal(), myType.getSym());
+            sym(myType.getSym().getType(), myFormalsList.getTypes());
+            symTab.addDecl(myId.getStrVal(), sym);
             symTab.addScope();
-            myFormalsList.nameAnalysis();
-            myBody.nameAnalysis();
+            myFormalsList.nameAnalysis(symTab);
+            myBody.nameAnalysis(symTab);
             symTab.removeScope();
         }
     }
@@ -348,6 +381,8 @@ class FnDeclNode extends DeclNode {
     private IdNode myId;
     private FormalsListNode myFormalsList;
     private FnBodyNode myBody;
+    private SemSym sym;
+
 }
 
 class FormalDeclNode extends DeclNode {
@@ -356,14 +391,15 @@ class FormalDeclNode extends DeclNode {
         myId = id;
     }
 
-    public void nameAnalysis() {
+    public void nameAnalysis(SymTable symTab); {
         if(myType.getSym().getType()=="void"){
             ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Non-function declared void");
         }
-        if(symTab.lookupLocal(myId.getStrVal())){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Multiply declared identifier");
-        }
         symTab.addDecl(myId.getStrVal(), myType.getSym());
+    }
+
+    public String getType(){
+        return myType.getType();
     }
 
     public void unparse(PrintWriter p, int indent) {
@@ -383,6 +419,17 @@ class StructDeclNode extends DeclNode {
         myDeclList = declList;
     }
 
+    public void nameAnalysis(SymTable symTab); {
+        if(!symTab.lookupLocal(myId.getStrVal())){
+            sym(myId.getStrVal);
+            symTab.addDecl(myId.getStrVal(), sym);
+            symTab.addScope();
+            myFormalsList.nameAnalysis(symTab);
+            myBody.nameAnalysis(symTab);
+            symTab.removeScope();
+        }
+    }
+
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
         p.print("struct ");
@@ -397,6 +444,7 @@ class StructDeclNode extends DeclNode {
     // 2 kids
     private IdNode myId;
 	private DeclListNode myDeclList;
+    private SemSym sym;
 }
 
 // **********************************************************************
@@ -451,7 +499,7 @@ class VoidNode extends TypeNode {
 
 class StructNode extends TypeNode {
     public StructNode(IdNode id) {
-        sym("struct");
+        sym("");
 		myId = id;
     }
 
@@ -744,8 +792,15 @@ class IdNode extends ExpNode {
         myStrVal = strVal;
     }
 
+    public void nameAnalysis(SymTable symTab){
+        sym = symTab.lookupGlobal(myStrVal);
+        if(sym){
+            string = "("+sym.toString+")";
+        }
+    }
+
     public void unparse(PrintWriter p, int indent) {
-        p.print(myStrVal);
+        p.print(myStrVal+string);
     }
 
     public String getStrVal(){
@@ -764,6 +819,7 @@ class IdNode extends ExpNode {
     private int myCharNum;
     private String myStrVal;
     private SemSym sym;
+    private String string;
 }
 
 class DotAccessExpNode extends ExpNode {
