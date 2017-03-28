@@ -8,8 +8,7 @@ public class SymTable {
         list.add(new HashMap<String, SemSym>());
     }
     
-    public void addDecl(String name, SemSym sym) 
-    throws DuplicateSymException, EmptySymTableException {
+    public void addDecl(IdNode myId, String name, SemSym sym) throws EmptySymTableException {
         if (name == null || sym == null)
             throw new NullPointerException();
         
@@ -25,7 +24,7 @@ public class SymTable {
                 symTab.put(name, sym);
             }
         }catch(DuplicateSymException d){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Multiply declared identifier");
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Multiply declared identifier");
         }   
     }
     

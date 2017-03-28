@@ -1,4 +1,7 @@
-public class SemSym {
+import java.util.*;
+
+
+public class SemSym{
     private String type;
     private String retType;
     private List<String> parameters; 
@@ -8,12 +11,16 @@ public class SemSym {
         this.type = type;
     }
 
-    public SemSym(String retType, List<String> parameters) {
-        this.reType = reType;
+    public void setSym(String type) {
+        this.type = type;
+    }
+
+    public void setSym(String retType, List<String> parameters) {
+        this.retType = retType;
         this.parameters = parameters;
     }
 
-    public SemSym(List<Strings> fields){
+    public void setSym(List<String> fields){
         this.fields = fields;
     }
 
@@ -26,17 +33,18 @@ public class SemSym {
     }
     
     public String toString() {
-        if(reType){
-            String params;
+        if(retType!=null){
+            String params = null;
             try{
                 if(parameters.size()!=0){
-                    params = parameters[0];
+                    params = parameters.get(0);
                     for(int j=1;j<parameters.size();j++){
-                        params=params+","+parameters[j];
+                        params=params+","+parameters.get(j);
                     }
                 }else{
                     throw new NullPointerException();
                 }  
+            }catch (NullPointerException e){
             }
             params=params+"->"+retType;
             return params;

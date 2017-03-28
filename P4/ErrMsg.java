@@ -4,8 +4,7 @@
  * This class is used to generate warning and fatal error messages.
  */
 class ErrMsg {
-    static bool error;
-    error = false;
+    public static boolean error = false;
     /**
      * Generates a fatal error message.
      * @param lineNum line number for error location
