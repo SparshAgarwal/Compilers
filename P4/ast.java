@@ -302,6 +302,7 @@ class ExpListNode extends ASTnode {
 // **********************************************************************
 
 abstract class DeclNode extends ASTnode {
+    abstract public void nameAnalysis(SymTable symTab);
 }
 
 class VarDeclNode extends DeclNode {
@@ -313,10 +314,13 @@ class VarDeclNode extends DeclNode {
 
     public void nameAnalysis(SymTable symTab); {
         if(myType.getSym().getType()=="void"){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Non-function declared void");
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Non-function declared void");
         }
         else{
-            symTab.addDecl(myId.getStrVal(), myType.getSym());    
+            if(mySize==0){
+                myType.nameAnalysis(symTab);
+            }
+            symTab.addDecl(myId.getStrVal(), myType.getSym());
         }
     }
 
@@ -391,9 +395,9 @@ class FormalDeclNode extends DeclNode {
         myId = id;
     }
 
-    public void nameAnalysis(SymTable symTab); {
+    public void nameAnalysis(SymTable symTab) {
         if(myType.getSym().getType()=="void"){
-            ErrMsg.fatal(myId.getLineNum, myId.getCharNum, "Non-function declared void");
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Non-function declared void");
         }
         symTab.addDecl(myId.getStrVal(), myType.getSym());
     }
@@ -421,11 +425,10 @@ class StructDeclNode extends DeclNode {
 
     public void nameAnalysis(SymTable symTab); {
         if(!symTab.lookupLocal(myId.getStrVal())){
-            sym(myId.getStrVal);
+            sym("struct");
             symTab.addDecl(myId.getStrVal(), sym);
             symTab.addScope();
-            myFormalsList.nameAnalysis(symTab);
-            myBody.nameAnalysis(symTab);
+            myDeclList.nameAnalysis(symTab);
             symTab.removeScope();
         }
     }
@@ -499,8 +502,16 @@ class VoidNode extends TypeNode {
 
 class StructNode extends TypeNode {
     public StructNode(IdNode id) {
-        sym("");
 		myId = id;
+    }
+
+    public void nameAnalysis(SymTablem symTab){
+         if(symTab.lookupLocal(myId.getStrVal()).getType()!="struct"){
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Invalid name of struct type");
+         }
+         else{
+            sym(myId.getStrVal());
+         }
     }
 
     public void unparse(PrintWriter p, int indent) {

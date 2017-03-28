@@ -2,6 +2,7 @@ public class SemSym {
     private String type;
     private String retType;
     private List<String> parameters; 
+    private List<String> fields;
     
     public SemSym(String type) {
         this.type = type;
@@ -10,6 +11,14 @@ public class SemSym {
     public SemSym(String retType, List<String> parameters) {
         this.reType = reType;
         this.parameters = parameters;
+    }
+
+    public SemSym(List<Strings> fields){
+        this.fields = fields;
+    }
+
+    public List<String> getfields(){
+        return fields;
     }
     
     public String getType() {
