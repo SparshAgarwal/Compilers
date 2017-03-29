@@ -40,7 +40,7 @@ ErrMsg.class: ErrMsg.java
 
 ##test
 test:
-	java   P4 test.cf
+	java   P4 test.cf out
 
 ###
 # clean

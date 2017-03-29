@@ -56,7 +56,7 @@ public class P4 {
             System.exit(-1);
         }
         try {
-            root = P.nameAnalysis(); // do the parse
+            ((ProgramNode)root.value).nameAnalysis(); // do the nameAnalysis
             System.out.println ("program nameanalysed correctly.");
         } catch (Exception ex){
             System.err.println("Exception occured during nameAnalysis: " + ex);
