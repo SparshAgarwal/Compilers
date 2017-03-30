@@ -47,19 +47,19 @@ public class P4 {
         Symbol root = null; // the parser will return a Symbol whose value
                             // field is the translation of the root nonterminal
                             // (i.e., of the nonterminal "program")
-
         try {
             root = P.parse(); // do the parse
             System.out.println ("program parsed correctly.");
         } catch (Exception ex){
-            System.err.println("Exception occured during parse: " + ex);
-            System.exit(-1);
+           ex.printStackTrace();
+           System.exit(-1);
         }
+
         try {
             ((ProgramNode)root.value).nameAnalysis(); // do the nameAnalysis
-            System.out.println ("program nameanalysed correctly.");
+            System.out.println ("program nameanalysed");
         } catch (Exception ex){
-            System.err.println("Exception occured during nameAnalysis: " + ex);
+            ex.printStackTrace();
             System.exit(-1);
         }
         if(!ErrMsg.error){

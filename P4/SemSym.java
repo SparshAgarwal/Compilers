@@ -3,9 +3,9 @@ import java.util.*;
 
 public class SemSym{
     private String type;
-    private String retType;
+    private String retType = null;
     private List<String> parameters; 
-    private List<String> fields;
+    private HashMap<String,SemSym> fields;
     
     public SemSym(String type) {
         this.type = type;
@@ -20,11 +20,12 @@ public class SemSym{
         this.parameters = parameters;
     }
 
-    public void setSym(List<String> fields){
+    public void setSymList(String type, HashMap<String,SemSym> fields){
+        this.type = type;
         this.fields = fields;
     }
 
-    public List<String> getfields(){
+    public HashMap<String,SemSym> getfields(){
         return fields;
     }
     
@@ -34,7 +35,7 @@ public class SemSym{
     
     public String toString() {
         if(retType!=null){
-            String params = null;
+            String params = "";
             try{
                 if(parameters.size()!=0){
                     params = parameters.get(0);
