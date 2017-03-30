@@ -902,11 +902,18 @@ class IdNode extends ExpNode {
     }
 
     public HashMap<String,SemSym> nameAnalysisInList(HashMap<String,SemSym> symList) throws EmptySymTableException{
-        sym = symList.get(myStrVal);
-        if(sym!=null){
-            string = "("+sym.toString()+")";
+        try{
+            sym = symList.get(myStrVal);
+            if(sym!=null){
+                string = "("+sym.toString()+")";
+                return sym.getfields();
+            }else{
+                ErrMsg.fatal(myLineNum, myCharNum, "Invalid struct field name");
+            }
+        }catch(NullPointerException n){
+            ErrMsg.fatal(myLineNum, myCharNum, "Invalid struct field name");
         }
-        return sym.getfields();
+        return null;
     }
 
     public void unparse(PrintWriter p, int indent) {
@@ -932,7 +939,7 @@ class IdNode extends ExpNode {
     private int myLineNum;
     private int myCharNum;
     private String myStrVal;
-    private SemSym sym = new SemSym("");
+    private SemSym sym = null;
     private String string = "";
 }
 
@@ -944,18 +951,34 @@ class DotAccessExpNode extends ExpNode {
 
     public void nameAnalysis(SymTable symTab) throws EmptySymTableException {
         myLoc.nameAnalysis(symTab);
-        if(type ==null){
-            type = symTab.lookupGlobal(((IdNode)myLoc).getSym().getType()).getType();
-            fields = ((IdNode)myLoc).getSym().getfields();
+        if(myLoc.getClass().getName()=="IdNode"){
+            try{
+                type = symTab.lookupGlobal(((IdNode)myLoc).getSym().getType()).getType();
+                fields = ((IdNode)myLoc).getSym().getfields();
+            }catch(NullPointerException n){
+                ErrMsg.fatal(((IdNode)myLoc).getLineNum(), ((IdNode)myLoc).getCharNum(), "Dot-access of non-struct type");
+            }
+        }else{
+            type = ((DotAccessExpNode)myLoc).getType();
+            fields = ((DotAccessExpNode)myLoc).getFields();
         }
         if((type=="struct") && (fields!=null)){
-            fields = myId.nameAnalysisInList(fields);
-            type = myId.getSym().getType();
-        }else if ((type!="struct") && (fields==null)){
-
-        }else{
-            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Invalid name of struct type");
+            try{
+                fields = myId.nameAnalysisInList(fields);
+                type = symTab.lookupGlobal(myId.getSym().getType()).getType();
+            }catch(NullPointerException n){
+            }
+        }else if((type!="struct") && (fields==null)){
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Dot-access of non-struct type");
         }
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public HashMap<String, SemSym> getFields(){
+        return fields;
     }
 
     public void unparse(PrintWriter p, int indent) {

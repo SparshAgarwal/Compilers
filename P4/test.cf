@@ -2,8 +2,21 @@ struct Point {
     int x;
     int y;
 };
+
+struct line {
+    int l;
+    int m;
+    struct Point f;
+};
+
+struct dot {
+    int o;
+    int q;
+    struct line g;
+};
+
 int f(int x, bool b) { }
-void g() {
+void w() {
     int a;
     bool b;
     struct Point p;
@@ -13,12 +26,8 @@ void g() {
     g();
 }
 
-int x;
-struct Point {
-    int x;
-    int y;
-};
-int f(int y, bool b) {
+
+int e(int y, bool b) {
 int j;
 	y =5;
 	x = 6;
@@ -26,16 +35,16 @@ int j;
 void g(int k, bool l) {
     int a;
     bool b;
-    struct Point p;
+    struct dot p;
     int y;
     x = 6;
     k = 7;
     g();
     p = 2;
     x =a;
-    p.x = a;
+    p.o = a;
     b = a == 3;
-    f(a + p.y*2, b);
+    f(a + p.g.f.y*2, b);
     b = a == 3;
     f(a + y*2, b);
     
