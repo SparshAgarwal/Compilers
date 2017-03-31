@@ -40,10 +40,11 @@ ErrMsg.class: ErrMsg.java
 
 ##test
 test:
-	java   P4 test.cf out
+	java   P4 test.moo out;
+	java   P4 nameErrors.moo out2
 
 ###
 # clean
 ###
 clean:
-	rm -f *~ *.class parser.java moo.jlex.java sym.java out
+	rm -f *~ *.class parser.java moo.jlex.java sym.java out out2
