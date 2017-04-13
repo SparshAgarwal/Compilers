@@ -136,7 +136,7 @@ class ProgramNode extends ASTnode {
     }
     
     public void typeCheck(){
-    	// TODO: You'll have to change this
+        myDeclList.typeCheck();
     }
     
     public void unparse(PrintWriter p, int indent) {
@@ -175,6 +175,14 @@ class DeclListNode extends ASTnode {
             }
         }
     }    
+
+    public void typeCheck(){
+        for (DeclNode node : myDecls) {
+            if (!node instanceof VarDeclNode) {
+                node.typeCheck();
+            }
+        }
+    }
     
     public void unparse(PrintWriter p, int indent) {
         Iterator it = myDecls.iterator();
@@ -214,7 +222,7 @@ class FormalsListNode extends ASTnode {
         }
         return typeList;
     }    
-    
+
     /**
      * Return the number of formals in this list.
      */
@@ -253,6 +261,11 @@ class FnBodyNode extends ASTnode {
         myDeclList.nameAnalysis(symTab);
         myStmtList.nameAnalysis(symTab);
     }    
+
+    public void typeCheck(){
+        myDeclList.typeCheck();
+        myStmtList.typeCheck();
+    }
     
     public void unparse(PrintWriter p, int indent) {
         myDeclList.unparse(p, indent);
@@ -276,6 +289,14 @@ class StmtListNode extends ASTnode {
     public void nameAnalysis(SymTable symTab) {
         for (StmtNode node : myStmts) {
             node.nameAnalysis(symTab);
+        }
+    }
+
+    public void typeCheck(){
+        for (StmtNode stmt : myStmts) {
+            if (node instanceof VarDeclNode) {
+                stmt.typeCheck();
+            }
         }
     }    
     
@@ -304,6 +325,12 @@ class ExpListNode extends ASTnode {
             node.nameAnalysis(symTab);
         }
     }
+
+    public void typeCheck(){
+        for (ExpNode exp : myExps) {
+            exp.typeCheck();
+        }
+    }      
     
     public void unparse(PrintWriter p, int indent) {
         Iterator<ExpNode> it = myExps.iterator();
@@ -501,6 +528,10 @@ class FnDeclNode extends DeclNode {
         return null;
     }    
     
+    public void typeCheck(){
+        myBody.typeCheck();
+    }   
+
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
         myType.unparse(p, 0);
@@ -631,6 +662,10 @@ class StructDeclNode extends DeclNode {
         return null;
     }    
     
+    public void typeCheck(){
+        myDeclList.typeCheck();
+    }   
+
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
         p.print("struct ");
@@ -749,6 +784,10 @@ class AssignStmtNode extends StmtNode {
     public void nameAnalysis(SymTable symTab) {
         myAssign.nameAnalysis(symTab);
     }
+
+    public void typeCheck(){
+        myAssign.typeCheck();
+    }
     
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
@@ -771,6 +810,13 @@ class PostIncStmtNode extends StmtNode {
      */
     public void nameAnalysis(SymTable symTab) {
         myExp.nameAnalysis(symTab);
+    }
+
+    public void typeCheck(){
+        Type type = myExp.typeCheck();
+        if(!(type.isIntType()&&type.isErrorType())){
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Arithmetic operator applied to non-numeric operand");
+        }
     }
     
     public void unparse(PrintWriter p, int indent) {
@@ -796,6 +842,13 @@ class PostDecStmtNode extends StmtNode {
         myExp.nameAnalysis(symTab);
     }
     
+    public void typeCheck(){
+        Type type = myExp.typeCheck();
+        if(!(type.isIntType()&&type.isErrorType())){
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Arithmetic operator applied to non-numeric operand");
+        }
+    }
+
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
         myExp.unparse(p, 0);
@@ -817,7 +870,14 @@ class ReadStmtNode extends StmtNode {
      */
     public void nameAnalysis(SymTable symTab) {
         myExp.nameAnalysis(symTab);
-    }    
+    }  
+
+    public void typeCheck(){
+        Type type = myExp.typeCheck();
+        if(type.isFnType()&&(!type.isErrorType())){
+            ErrMsg.fatal(myId.getLineNum(), myId.getCharNum(), "Arithmetic operator applied to non-numeric operand");
+        }
+    }  
     
     public void unparse(PrintWriter p, int indent) {
         doIndent(p, indent);
@@ -1354,7 +1414,7 @@ class AssignNode extends ExpNode {
         myLhs = lhs;
         myExp = exp;
     }
-
+IntNode
     /**
      * nameAnalysis
      * Given a symbol table symTab, perform name analysis on this node's 

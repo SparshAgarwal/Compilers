@@ -19,7 +19,8 @@ public class P5 {
 	
 	public static final int RESULT_CORRECT = 0;
 	public static final int RESULT_SYNTAX_ERROR = 1;
-	public static final int RESULT_TYPE_ERROR = 2;
+	public static final int RESULT_NAMEANALYSIS_ERROR = 2;
+	public static final int RESULT_TYPE_ERROR = 3;
 	public static final int RESULT_OTHER_ERROR = -1;
 
 	/**
@@ -128,6 +129,7 @@ public class P5 {
 	private Symbol parseCFG(){
 		try {
 	        parser P = new parser(new Yylex(inFile));
+	        System.out.println ("program parsed correctly.");
 	        return P.parse();
 		} catch (Exception e){
 			return null;
@@ -141,13 +143,33 @@ public class P5 {
 		if (ErrMsg.getErr()) {  
 			return P5.RESULT_SYNTAX_ERROR;
 		}
+
+		try {
+            astRoot.nameAnalysis(); // do the nameAnalysis
+            System.out.println ("program nameanalysed");
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.exit(-1);
+        }
+        if (ErrMsg.getErr()) {  
+			return P5.RESULT_NAMEANALYSIS_ERROR;
+		}
+
+		try {
+            astRoot.typeCheck(); // do the typecheck
+            System.out.println ("program typechecked");
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.exit(-1);
+        }
+        if (ErrMsg.getErr()) {  
+			return P5.RESULT_TYPE_ERROR;
+		}
 		
-		astRoot.nameAnalysis();  // perform name analysis
-		
-		astRoot.typeCheck();
-		
-		astRoot.unparse(outFile, 0);
-		return P5.RESULT_CORRECT;
+		if(!ErrMsg.error){
+            astRoot.unparse(outFile, 0);
+			return P5.RESULT_CORRECT;
+		}
 	}
 	
 	public void run(){
@@ -160,6 +182,8 @@ public class P5 {
 		switch(resultCode){
 		case RESULT_SYNTAX_ERROR:
 			pukeAndDie("Syntax error", resultCode);
+		case RESULT_NAMEANALYSIS_ERROR:
+			pukeAndDie("nameAnalysis error", resultCode);
 		case RESULT_TYPE_ERROR:
 			pukeAndDie("Type checking error", resultCode);
 		default:
