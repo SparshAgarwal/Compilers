@@ -166,10 +166,11 @@ public class P5 {
 			return P5.RESULT_TYPE_ERROR;
 		}
 		
-		if(!ErrMsg.error){
+		if(!ErrMsg.getErr()){
             astRoot.unparse(outFile, 0);
 			return P5.RESULT_CORRECT;
 		}
+		return P5.RESULT_OTHER_ERROR;
 	}
 	
 	public void run(){

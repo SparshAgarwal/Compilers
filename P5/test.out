@@ -2,7 +2,7 @@ int main() {
     int a;
     bool b;
     a(int) = 1;
-    b(bool) = true;
+    b(bool) = (3 == 4);
     return a(int);
 }
 
