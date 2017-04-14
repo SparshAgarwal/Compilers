@@ -1660,6 +1660,9 @@ class CallExpNode extends ExpNode {
             ErrMsg.fatal(myId.lineNum(), myId.charNum(), "Attempt to call a non-function"); 
             return errorType;
         }
+        if(((FnSym)sym).getReturnType().isVoidType()){
+            return ((FnSym)sym).getReturnType();
+        }
         if(((FnSym)sym).getNumParams()!=myExpList.size()){
             ErrMsg.fatal(myId.lineNum(), myId.charNum(), "Function call with wrong number of args"); 
             return errorType;

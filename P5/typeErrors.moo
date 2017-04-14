@@ -17,6 +17,14 @@ struct dot {
     struct line g;
 };
 
+void wi() {
+    int a;
+    bool b;
+    struct Point p;
+    p.x = a;
+    b = a == 3;
+}
+
 int f(int x, bool b) { 
     struct Point d;
     cat = 8;
@@ -25,19 +33,17 @@ int f(int x, bool b) {
     cout<<d;
     cout<<f;
     cout<<f(true, cat);
-    cout<<f;
     cout<<f(cat);
     cout<<f(dog, cat);
-    cout<<w(dog, cat);
+    cout<<wi(dog, cat);
     cin>>cat;
     cin>>Point;
     cin>>d;
     cin>>f;
-    cin>>f(true, cat);
-    cin>>f;
-    cin>>f(cat);
+    cin>>wi;
     cout<<cat();
     return;
+    return true;
     }
 void w() {
     int a;
@@ -46,6 +52,11 @@ void w() {
     p.x = a;
     b = a == 3;
     f(a + p.y*2, b);
+    return true;
+    struct dot d;
+    a = a + d.g.f.cat*true - b / p;
+    b++;
+    d.g.f.cat--;
 }
 
 
