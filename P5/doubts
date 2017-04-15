@@ -1,3 +1,0 @@
-cin>>f() where f may or may not be valid
-check fun params and types only if it is not void?even if the params are wrong
-reading a void function

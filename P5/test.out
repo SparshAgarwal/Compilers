@@ -1,0 +1,250 @@
+int dog;
+bool cat;
+struct Point{
+    int x;
+    int y;
+    int dog;
+    bool cat;
+};
+
+struct line{
+    int x;
+    int m;
+    struct Point f;
+};
+
+struct dot{
+    int o;
+    int q;
+    struct line g;
+};
+
+void wi() {
+    int a;
+    bool b;
+    struct Point p;
+    p(Point).x(int) = a(int);
+    b(bool) = (a(int) == 3);
+}
+
+int f(int x, bool b) {
+    struct Point d;
+    struct dot p;
+    cat(bool) = true;
+    cout << cat(bool);
+    cout << b(bool);
+    cout << f(int,bool->int)(4, cat(bool));
+    cout << f(int,bool->int)(dog(int), cat(bool));
+    cin >> cat(bool);
+    cin >> p(dot).g(line).f(Point).x(int);
+    cout << cat(bool);
+    return 5;
+}
+
+void w() {
+    int a;
+    bool b;
+    struct Point p;
+    return;
+}
+
+void g(int k) {
+    int a;
+    bool b;
+    bool l;
+    struct dot p;
+    struct line q;
+    int y;
+    k(int) = 7;
+    k(int) = a(int);
+    k(int) = p(dot).g(line).f(Point).x(int);
+    g(int->void)(3);
+    p(dot).o(int) = a(int);
+    b(bool) = (a(int) == 3);
+    b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+    b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+    g(int->void)(3);
+    a(int)++;
+    a(int)--;
+    b(bool) = (6 >= 5);
+    b(bool) = (a(int) >= a(int));
+    b(bool) = (a(int) <= a(int));
+    b(bool) = (a(int) > a(int));
+    b(bool) = (a(int) < a(int));
+    f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
+    b(bool) = (a(int) == 3);
+}
+
+struct p{
+    int i;
+};
+
+void main() {
+    int p;
+    if (true) {
+    }
+    return;
+}
+
+int horse(int dog, bool cat) {
+    struct Point m;
+    struct Point d;
+    bool l;
+    while (true) {
+    }
+    if (true) {
+    }
+    if ((m(Point).x(int) == 3)) {
+        int u;
+        int k;
+        bool l;
+        int dog;
+        struct line newline;
+        int a;
+        bool b;
+        struct dot p;
+        struct line q;
+        int y;
+        struct Point d;
+        cat(bool) = true;
+        cout << cat(bool);
+        cout << b(bool);
+        cout << f(int,bool->int)(4, cat(bool));
+        cout << f(int,bool->int)(dog(int), cat(bool));
+        cin >> cat(bool);
+        cin >> p(dot).g(line).f(Point).x(int);
+        cout << cat(bool);
+        return 5;
+        while (true) {
+        }
+        if (true) {
+        }
+        dog(int) = 4;
+        k(int) = 7;
+        k(int) = a(int);
+        k(int) = p(dot).g(line).f(Point).x(int);
+        g(int->void)(3);
+        p(dot).o(int) = a(int);
+        b(bool) = (a(int) == 3);
+        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+        g(int->void)(3);
+        a(int)++;
+        a(int)--;
+        b(bool) = (6 >= 5);
+        b(bool) = (a(int) >= a(int));
+        b(bool) = (a(int) <= a(int));
+        b(bool) = (a(int) > a(int));
+        b(bool) = (a(int) < a(int));
+        f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
+        b(bool) = (a(int) == 3);
+        while ((((dog(int) + 4) + m(Point).x(int)) == a(int))) {
+            struct line newline;
+            int chair;
+            int a;
+            bool b;
+            struct dot p;
+            struct line q;
+            int y;
+            struct Point d;
+            cat(bool) = true;
+            cout << cat(bool);
+            cout << b(bool);
+            cout << f(int,bool->int)(4, cat(bool));
+            cout << f(int,bool->int)(dog(int), cat(bool));
+            cin >> cat(bool);
+            cin >> p(dot).g(line).f(Point).x(int);
+            cout << cat(bool);
+            return 5;
+            u(int) = 9;
+            return (-a(int));
+            chair(int) = newline(line).x(int);
+            k(int) = 7;
+            k(int) = a(int);
+            k(int) = p(dot).g(line).f(Point).x(int);
+            g(int->void)(3);
+            p(dot).o(int) = a(int);
+            b(bool) = (a(int) == 3);
+            b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+            b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+            g(int->void)(3);
+            a(int)++;
+            a(int)--;
+            b(bool) = (6 >= 5);
+            b(bool) = (a(int) >= a(int));
+            b(bool) = (a(int) <= a(int));
+            b(bool) = (a(int) > a(int));
+            b(bool) = (a(int) < a(int));
+            f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
+            b(bool) = (a(int) == 3);
+        }
+    }
+    else {
+        int a;
+        bool b;
+        int k;
+        bool l;
+        struct dot p;
+        struct line q;
+        int y;
+        struct Point d;
+        cat(bool) = true;
+        cout << cat(bool);
+        cout << b(bool);
+        cout << f(int,bool->int)(4, cat(bool));
+        cout << f(int,bool->int)(dog(int), cat(bool));
+        cin >> cat(bool);
+        cin >> p(dot).g(line).f(Point).x(int);
+        cout << cat(bool);
+        return 5;
+        k(int) = 7;
+        k(int) = a(int);
+        k(int) = p(dot).g(line).f(Point).x(int);
+        g(int->void)(3);
+        p(dot).o(int) = a(int);
+        b(bool) = (a(int) == 3);
+        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
+        g(int->void)(3);
+        a(int)++;
+        a(int)--;
+        b(bool) = (6 >= 5);
+        b(bool) = (a(int) >= a(int));
+        b(bool) = (a(int) <= a(int));
+        b(bool) = (a(int) > a(int));
+        b(bool) = (a(int) < a(int));
+        f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
+        b(bool) = (a(int) == 3);
+        if ((dog(int) == k(int))) {
+            int chair;
+            struct line newline;
+            int dog;
+            while ((((dog(int) + 4) + m(Point).x(int)) == k(int))) {
+                int chair;
+                chair(int) = 9;
+            }
+            chair(int) = 6;
+        }
+    }
+    while ((((dog(int) + 4) + m(Point).x(int)) == 3)) {
+        int fan;
+        struct line newline;
+    }
+    cin >> m(Point).x(int);
+    cin >> dog(int);
+    cout << ((dog(int) + 4) + m(Point).x(int));
+    return m(Point).x(int);
+}
+
+void gear() {
+    int a;
+    bool b;
+    struct dot p;
+    struct Point po;
+    p(dot).o(int) = a(int);
+    b(bool) = (a(int) == 3);
+    horse(int,bool->int)((a(int) + (p(dot).g(line).f(Point).y(int) * 2)), b(bool));
+    g(int->void)(4);
+    return;
+}
+
