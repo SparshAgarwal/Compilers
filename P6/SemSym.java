@@ -6,6 +6,7 @@ import java.util.*;
  */
 public class SemSym {
     private Type type;
+    public int offset;
     
     public SemSym(Type type) {
         this.type = type;
