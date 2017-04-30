@@ -1,0 +1,75 @@
+struct point{
+       int x;
+       int y;
+};
+
+struct plane{
+       struct point p;
+       int z;
+};
+
+struct space{
+       struct plane pl;
+       int z;
+};      
+
+int f(int a, bool b){
+    return 2;
+}
+
+int foo(){
+
+}
+
+bool bar(){
+
+}
+
+
+bool g(int c){
+     int d;
+     struct plane p;
+     return true;
+}
+
+int main(){
+     int a;
+     bool b;
+     int c;
+     struct point p;
+     struct space s;
+
+     # arithmetic
+     a = c;
+     a = c + 2;
+     c = a -4 * 999;
+     a = -a;
+     a++;
+     c--;
+     a = f(c, b);
+     c = f(foo(),bar());
+     s.z++;
+     p.y--;
+     p.y = a - s.z;
+     # cout, cin,relation test
+     cout << b == (c!=a);
+     cout << a > c;
+     cout << c < a;
+     cout << a <= c;
+     cout << c >= c;
+     cout << a;
+
+     # function, equality, return test
+     if(a == c){
+     	  return 3;
+     }else{
+         while( a != c){
+	     if( b && (c > 4)){
+	         return a-4;
+	     }
+	     return 1000;
+	 }
+     }
+
+     return a - c + 3 / c * c + c *c;
+}
