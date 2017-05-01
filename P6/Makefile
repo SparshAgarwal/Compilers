@@ -55,8 +55,7 @@ EmptySymTableException.class: EmptySymTableException.java
 # test
 #
 test:
-	java P6 test.moo test.out;
-	java P6 typeErrors.moo typeErrors.out
+	java P6 test.moo test.out
 
 ###
 # clean
