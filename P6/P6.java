@@ -12,7 +12,7 @@ import java_cup.runtime.*;
  * The program opens the two files, creates a scanner and a parser, and
  * calls the parser.  If the parse is successful, the AST is unparsed.
  */
-public class P5 {
+public class P6 {
 	FileReader inFile;
 	private PrintWriter outFile;
 	private static PrintStream outStream = System.err;
@@ -21,35 +21,36 @@ public class P5 {
 	public static final int RESULT_SYNTAX_ERROR = 1;
 	public static final int RESULT_NAMEANALYSIS_ERROR = 2;
 	public static final int RESULT_TYPE_ERROR = 3;
+	public static final int RESULT_CODEGEN_ERROR = 4;
 	public static final int RESULT_OTHER_ERROR = -1;
 
 	/**
-	 * P5 constructor for client programs and testers. Note that
+	 * P6 constructor for client programs and testers. Note that
 	 * users MUST invoke {@link setInfile} and {@link setOutfile}
 	 */
-	public P5(){
+	public P6(){
 	}
 	
 	/**
-	 * If we are directly invoking P5 from the command line, this
+	 * If we are directly invoking P6 from the command line, this
 	 * is the command line to use. It shouldn't be invoked from
 	 * outside the class (hence the private constructor) because
 	 * it 
 	 * @param args command line args array for [<infile> <outfile>]
 	 */
-	private P5(String[] args){
-    	//Parse arguments    	
-        if (args.length < 2) {
-        	String msg = "please supply name of file to be parsed"
-        			+ "and name of file for unparsed version.";
-        	pukeAndDie(msg);
-        }
+	private P6(String[] args){
+		//Parse arguments    	
+		if (args.length < 2) {
+			String msg = "please supply name of file to be parsed"
+					+ "and name of file for unparsed version.";
+			pukeAndDie(msg);
+		}
 		
 		try{
 			setInfile(args[0]);
 			setOutfile(args[1]);
 		} catch(BadInfileException e){
-            pukeAndDie(e.getMessage());			
+			pukeAndDie(e.getMessage());			
 		} catch(BadOutfileException e){
 			pukeAndDie(e.getMessage());
 		}
@@ -60,11 +61,11 @@ public class P5 {
 	 * @param filename path to source file
 	 */
 	public void setInfile(String filename) throws BadInfileException{
-        try {
-            inFile = new FileReader(filename);
-        } catch (FileNotFoundException ex) {
-        	throw new BadInfileException(ex, filename);
-        }
+		try {
+			inFile = new FileReader(filename);
+		} catch (FileNotFoundException ex) {
+			throw new BadInfileException(ex, filename);
+		}
 	}
 
 	/**
@@ -72,11 +73,11 @@ public class P5 {
 	 * @param filename path to destination file
 	 */
 	public void setOutfile(String filename) throws BadOutfileException{
-        try {
-            outFile = new PrintWriter(filename);
-        } catch (FileNotFoundException ex) {
-        	throw new BadOutfileException(ex, filename);
-        }
+		try {
+			outFile = new PrintWriter(filename);
+		} catch (FileNotFoundException ex) {
+			throw new BadOutfileException(ex, filename);
+		}
 	}
 	
 	/**
@@ -116,21 +117,21 @@ public class P5 {
 	 * @param error message to print on exit
 	 */
 	private void pukeAndDie(String error, int retCode){
-        outStream.println(error);
-        cleanup();
+		outStream.println(error);
+		cleanup();
 		System.exit(-1);		
 	}
 	
 	/** the parser will return a Symbol whose value
 	 * field is the translation of the root nonterminal
-     * (i.e., of the nonterminal "program")
+	 * (i.e., of the nonterminal "program")
 	 * @return root of the CFG
 	 */
 	private Symbol parseCFG(){
 		try {
-	        parser P = new parser(new Yylex(inFile));
-	        System.out.println ("program parsed correctly.");
-	        return P.parse();
+			parser P = new parser(new Yylex(inFile));
+			System.out.println ("program parsed correctly.");
+			return P.parse();
 		} catch (Exception e){
 			return null;
 		}
@@ -139,38 +140,38 @@ public class P5 {
 	public int process(){
 		Symbol cfgRoot = parseCFG();
 		
-		ProgramNode astRoot = (ProgramNode)cfgRoot.value; 
 		if (ErrMsg.getErr()) {  
-			return P5.RESULT_SYNTAX_ERROR;
+			return P6.RESULT_SYNTAX_ERROR;
 		}
 
-		try {
-            astRoot.nameAnalysis(); // do the nameAnalysis
-            System.out.println ("program nameanalysed");
-        } catch (Exception ex){
-            ex.printStackTrace();
-            System.exit(-1);
-        }
-        if (ErrMsg.getErr()) {  
-			return P5.RESULT_NAMEANALYSIS_ERROR;
-		}
-
-		try {
-            astRoot.typeCheck(); // do the typecheck
-            System.out.println ("program typechecked");
-        } catch (Exception ex){
-            ex.printStackTrace();
-            System.exit(-1);
-        }
-        if (ErrMsg.getErr()) {  
-			return P5.RESULT_TYPE_ERROR;
-		}
+		ProgramNode astRoot = (ProgramNode)cfgRoot.value; 
 		
-		if(!ErrMsg.getErr()){
-            astRoot.unparse(outFile, 0);
-			return P5.RESULT_CORRECT;
+
+		try {
+			astRoot.nameAnalysis(); // do the nameAnalysis
+			System.out.println ("program nameanalysed");
+		} catch (Exception ex){
+			ex.printStackTrace();
+			System.exit(-1);
 		}
-		return P5.RESULT_OTHER_ERROR;
+		if (ErrMsg.getErr()) {  
+			return P6.RESULT_NAMEANALYSIS_ERROR;
+		}
+
+		try {
+			astRoot.typeCheck(); // do the typecheck
+			System.out.println ("program typechecked");
+		} catch (Exception ex){
+			ex.printStackTrace();
+			System.exit(-1);
+		}
+		if (ErrMsg.getErr()) {  
+			return P6.RESULT_TYPE_ERROR;
+		}
+
+		astRoot.codeGen(outFile);
+
+		return P6.RESULT_CORRECT;
 	}
 	
 	public void run(){
@@ -184,7 +185,7 @@ public class P5 {
 		case RESULT_SYNTAX_ERROR:
 			pukeAndDie("Syntax error", resultCode);
 		case RESULT_NAMEANALYSIS_ERROR:
-			pukeAndDie("nameAnalysis error", resultCode);
+			pukeAndDie("Name Analyze error", resultCode);
 		case RESULT_TYPE_ERROR:
 			pukeAndDie("Type checking error", resultCode);
 		default:
@@ -222,8 +223,8 @@ public class P5 {
 		}
 	}
 	
-    public static void main(String[] args){
-    	P5 instance = new P5(args);
-    	instance.run();
-    }
+	public static void main(String[] args){
+		P6 instance = new P6(args);
+		instance.run();
+	}
 }
