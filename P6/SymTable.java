@@ -52,6 +52,22 @@ public class SymTable {
             throw new EmptySymTableException();
         list.remove(0);
     }
+
+    public int whichScopeLevel(){
+    return list.size();
+    }
+
+    // public int variableInScope(){
+    //  return list.get(0).size();
+    // }
+
+    public HashMap<String, SemSym> getField(){
+    if(!list.isEmpty()){
+        return list.get(0);
+    }
+
+    return null;
+    }
     
     public void print() {
         System.out.print("\nSym Table\n");

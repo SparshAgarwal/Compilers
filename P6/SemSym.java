@@ -6,10 +6,20 @@ import java.util.*;
  */
 public class SemSym {
     private Type type;
-    public int offset;
-    
+
+    public int offset; // the offset of a symbol to fp
+    public int structOffset; // the offset of the id as it is declared inside a struct
+    public boolean isGlobal;
+    public int size;
+
+
     public SemSym(Type type) {
         this.type = type;
+
+    this.offset = 0; // test if initialized
+    this.structOffset = 0;
+    this.isGlobal = false;
+    size = 0; //
     }
     
     public Type getType() {
@@ -17,7 +27,9 @@ public class SemSym {
     }
     
     public String toString() {
-        return type.toString();
+        // return type.toString() + "<" + Integer.toString(offset) + ">";
+        return "<" + Integer.toString(offset) + "> $" + structOffset + "$"  + " |" + size +"|";
+
     }
 }
 
@@ -31,11 +43,17 @@ class FnSym extends SemSym {
     private Type returnType;
     private int numParams;
     private List<Type> paramTypes;
+
+    public int localSpace;
+    public int formalSpace;
     
     public FnSym(Type type, int numparams) {
         super(new FnType());
         returnType = type;
         numParams = numparams;
+
+    formalSpace = 0;
+    localSpace = 0;
     }
 
     public void addFormals(List<Type> L) {
@@ -100,10 +118,12 @@ class StructSym extends SemSym {
 class StructDefSym extends SemSym {
     // new fields
     private SymTable symTab;
+    public int structSize;
     
     public StructDefSym(SymTable table) {
         super(new StructDefType());
         symTab = table;
+    structSize = 0;
     }
 
     public SymTable getSymTable() {
