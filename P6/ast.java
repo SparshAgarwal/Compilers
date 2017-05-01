@@ -161,7 +161,7 @@ class ProgramNode extends ASTnode {
 
     public void codeGen(PrintWriter p){
     myDeclList.codeGen(p);
-    System.out.println("\n***DONE***\n***Assembly code generated successfully in test..out***");
+    System.out.println("\n***DONE***\n***Assembly code generated successfully in test.out***");
 
     if(p!= null)
         p.close();
