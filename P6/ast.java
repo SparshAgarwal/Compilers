@@ -323,8 +323,8 @@ class FnBodyNode extends ASTnode {
         Codegen.p = p;
         if(this.localsp > 0){
             Codegen.generate("subu", "$sp", "$sp", this.localsp);
-            myStmtList.codeGen(p, elabel);
         }
+        myStmtList.codeGen(p, elabel);
     }
           
     public void unparse(PrintWriter p, int indent) {

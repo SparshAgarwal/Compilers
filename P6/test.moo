@@ -1,6 +1,10 @@
 int gi;
 
-int func(int a, int b){
+int function(int a, int b){
+  cout<<"\nvalue of a: ";
+  cout<<a;
+  cout<<"\nvalue of b: ";
+  cout<<b;
   return a + b - 9;
 }
 
@@ -13,29 +17,29 @@ void main(int af, int bf){
 
   bool b;
   if("abc" != "abcdd"){
-  	   cout<<"true!! abc != abcdd";
+  	   cout<<"\ntrue!! abc != abcdd";
   }else{
-	cout<<"fail abc != abcdd";
+	cout<<"\nfail abc != abcdd";
   }
-  cout<<"Enter a bool value"
+  cout<<"\nEnter a bool value: ";
   cin>>b;
-  cout<<"Enter a int value"
-  cin>>c1;
+  cout<<"\nEnter a int value for gi:";
+  cin>>gi;
 
   if(b){
-  cout<<"true is entered";
+  cout<<"\ntrue is entered";
 }else{
-	cout<<"false is entered";
+	cout<<"\nfalse is entered";
 }
-     c2 = c1*2; 
-     k = func(c1, c2);
-     if(c1 > c2){
-       cout <<"true\n";
+     c2 = gi*2; 
+     k = function(gi, c2);
+     if(gi > c2){
+       cout <<"\ntrue gi>c2";
      }else{
-       cout<<"false\n";
+       cout<<"\nfalse gi!>c2";
      }
-
-     while(c1 > 5){
+     c1 = 6;
+     while( c1 > 5){
        c1--;
        c2++;
      }
