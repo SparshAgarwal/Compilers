@@ -1,22 +1,6 @@
 int gi;
-struct point{
-       int x;
-       int y;
-};
-
-struct space{
-       struct point p;
-       int z;
-};
-
-struct complex{
-     struct space s;
-     struct point p;  
-     int z;
-};
 
 int func(int a, int b){
-  
   return a + b - 9;
 }
 
@@ -27,47 +11,38 @@ void main(int af, int bf){
   int c1;
   int c2;
 
-  struct complex com1;
-  struct complex com2;
-
-
-  //    c1 = 10;
-  //  c2 = 20;
-  //  k = func(c1, c2);
-
   bool b;
   if("abc" != "abcdd"){
-  	   cout<<"true!!";
+  	   cout<<"true!! abc != abcdd";
   }else{
-	cout<<"fail";
+	cout<<"fail abc != abcdd";
   }
+  cout<<"Enter a bool value"
   cin>>b;
+  cout<<"Enter a int value"
+  cin>>c1;
 
   if(b){
-  cout<<"yeah";
+  cout<<"true is entered";
 }else{
-	cout<<":(";
+	cout<<"false is entered";
 }
-
-
-     com1.s.p.x = 10;
-     com2.p.x = 20; 
-     k = func(com1.s.p.x, com2.p.x);
-     if(com1.s.p.x > com2.p.x){
-       cout << "true\n";
-
+     c2 = c1*2; 
+     k = func(c1, c2);
+     if(c1 > c2){
+       cout <<"true\n";
      }else{
-
        cout<<"false\n";
      }
 
-     while(com1.s.p.x > 5){
-       com1.s.p.x--;
-       com2.p.x++;
+     while(c1 > 5){
+       c1--;
+       c2++;
      }
      cout<<"after\n";
-     cout<<com1.s.p.x;  cout<<"   ";
-     cout<<com2.p.x;
+     cout<<c1;  
+     cout<<"   ";
+     cout<<c2;
 
   return;
 }
