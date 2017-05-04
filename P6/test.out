@@ -1,250 +1,242 @@
-int dog;
-bool cat;
-struct Point{
-    int x;
-    int y;
-    int dog;
-    bool cat;
-};
-
-struct line{
-    int x;
-    int m;
-    struct Point f;
-};
-
-struct dot{
-    int o;
-    int q;
-    struct line g;
-};
-
-void wi() {
-    int a;
-    bool b;
-    struct Point p;
-    p(Point).x(int) = a(int);
-    b(bool) = (a(int) == 3);
-}
-
-int f(int x, bool b) {
-    struct Point d;
-    struct dot p;
-    cat(bool) = true;
-    cout << cat(bool);
-    cout << b(bool);
-    cout << f(int,bool->int)(4, cat(bool));
-    cout << f(int,bool->int)(dog(int), cat(bool));
-    cin >> cat(bool);
-    cin >> p(dot).g(line).f(Point).x(int);
-    cout << cat(bool);
-    return 5;
-}
-
-void w() {
-    int a;
-    bool b;
-    struct Point p;
-    return;
-}
-
-void g(int k) {
-    int a;
-    bool b;
-    bool l;
-    struct dot p;
-    struct line q;
-    int y;
-    k(int) = 7;
-    k(int) = a(int);
-    k(int) = p(dot).g(line).f(Point).x(int);
-    g(int->void)(3);
-    p(dot).o(int) = a(int);
-    b(bool) = (a(int) == 3);
-    b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-    b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-    g(int->void)(3);
-    a(int)++;
-    a(int)--;
-    b(bool) = (6 >= 5);
-    b(bool) = (a(int) >= a(int));
-    b(bool) = (a(int) <= a(int));
-    b(bool) = (a(int) > a(int));
-    b(bool) = (a(int) < a(int));
-    f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
-    b(bool) = (a(int) == 3);
-}
-
-struct p{
-    int i;
-};
-
-void main() {
-    int p;
-    if (true) {
-    }
-    return;
-}
-
-int horse(int dog, bool cat) {
-    struct Point m;
-    struct Point d;
-    bool l;
-    while (true) {
-    }
-    if (true) {
-    }
-    if ((m(Point).x(int) == 3)) {
-        int u;
-        int k;
-        bool l;
-        int dog;
-        struct line newline;
-        int a;
-        bool b;
-        struct dot p;
-        struct line q;
-        int y;
-        struct Point d;
-        cat(bool) = true;
-        cout << cat(bool);
-        cout << b(bool);
-        cout << f(int,bool->int)(4, cat(bool));
-        cout << f(int,bool->int)(dog(int), cat(bool));
-        cin >> cat(bool);
-        cin >> p(dot).g(line).f(Point).x(int);
-        cout << cat(bool);
-        return 5;
-        while (true) {
-        }
-        if (true) {
-        }
-        dog(int) = 4;
-        k(int) = 7;
-        k(int) = a(int);
-        k(int) = p(dot).g(line).f(Point).x(int);
-        g(int->void)(3);
-        p(dot).o(int) = a(int);
-        b(bool) = (a(int) == 3);
-        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-        g(int->void)(3);
-        a(int)++;
-        a(int)--;
-        b(bool) = (6 >= 5);
-        b(bool) = (a(int) >= a(int));
-        b(bool) = (a(int) <= a(int));
-        b(bool) = (a(int) > a(int));
-        b(bool) = (a(int) < a(int));
-        f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
-        b(bool) = (a(int) == 3);
-        while ((((dog(int) + 4) + m(Point).x(int)) == a(int))) {
-            struct line newline;
-            int chair;
-            int a;
-            bool b;
-            struct dot p;
-            struct line q;
-            int y;
-            struct Point d;
-            cat(bool) = true;
-            cout << cat(bool);
-            cout << b(bool);
-            cout << f(int,bool->int)(4, cat(bool));
-            cout << f(int,bool->int)(dog(int), cat(bool));
-            cin >> cat(bool);
-            cin >> p(dot).g(line).f(Point).x(int);
-            cout << cat(bool);
-            return 5;
-            u(int) = 9;
-            return (-a(int));
-            chair(int) = newline(line).x(int);
-            k(int) = 7;
-            k(int) = a(int);
-            k(int) = p(dot).g(line).f(Point).x(int);
-            g(int->void)(3);
-            p(dot).o(int) = a(int);
-            b(bool) = (a(int) == 3);
-            b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-            b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-            g(int->void)(3);
-            a(int)++;
-            a(int)--;
-            b(bool) = (6 >= 5);
-            b(bool) = (a(int) >= a(int));
-            b(bool) = (a(int) <= a(int));
-            b(bool) = (a(int) > a(int));
-            b(bool) = (a(int) < a(int));
-            f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
-            b(bool) = (a(int) == 3);
-        }
-    }
-    else {
-        int a;
-        bool b;
-        int k;
-        bool l;
-        struct dot p;
-        struct line q;
-        int y;
-        struct Point d;
-        cat(bool) = true;
-        cout << cat(bool);
-        cout << b(bool);
-        cout << f(int,bool->int)(4, cat(bool));
-        cout << f(int,bool->int)(dog(int), cat(bool));
-        cin >> cat(bool);
-        cin >> p(dot).g(line).f(Point).x(int);
-        cout << cat(bool);
-        return 5;
-        k(int) = 7;
-        k(int) = a(int);
-        k(int) = p(dot).g(line).f(Point).x(int);
-        g(int->void)(3);
-        p(dot).o(int) = a(int);
-        b(bool) = (a(int) == 3);
-        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) || (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-        b(bool) = ((f(int,bool->int)(3, true) == f(int,bool->int)(3, true)) && (f(int,bool->int)(3, true) != f(int,bool->int)(3, true)));
-        g(int->void)(3);
-        a(int)++;
-        a(int)--;
-        b(bool) = (6 >= 5);
-        b(bool) = (a(int) >= a(int));
-        b(bool) = (a(int) <= a(int));
-        b(bool) = (a(int) > a(int));
-        b(bool) = (a(int) < a(int));
-        f(int,bool->int)((a(int) + (p(dot).g(line).f(Point).x(int) * 2)), b(bool));
-        b(bool) = (a(int) == 3);
-        if ((dog(int) == k(int))) {
-            int chair;
-            struct line newline;
-            int dog;
-            while ((((dog(int) + 4) + m(Point).x(int)) == k(int))) {
-                int chair;
-                chair(int) = 9;
-            }
-            chair(int) = 6;
-        }
-    }
-    while ((((dog(int) + 4) + m(Point).x(int)) == 3)) {
-        int fan;
-        struct line newline;
-    }
-    cin >> m(Point).x(int);
-    cin >> dog(int);
-    cout << ((dog(int) + 4) + m(Point).x(int));
-    return m(Point).x(int);
-}
-
-void gear() {
-    int a;
-    bool b;
-    struct dot p;
-    struct Point po;
-    p(dot).o(int) = a(int);
-    b(bool) = (a(int) == 3);
-    horse(int,bool->int)((a(int) + (p(dot).g(line).f(Point).y(int) * 2)), b(bool));
-    g(int->void)(4);
-    return;
-}
-
+	.data
+		.align 2
+	_gi:	.space 4
+		# FUNCTION ENTRY
+	.text
+_func:		# METHOD ENTRY
+	sw    $ra, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	sw    $fp, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	addu  $fp, $sp, 16
+		# FUNCTION EXIT
+_func_Exit:
+	lw    $ra, -8($fp)	#get ra
+	move  $t0, $fp		#save control link
+	lw    $fp, -12($fp)	#restore FP
+	move  $sp, $t0		#restore SP
+	jr    $ra		#retrun
+		# FUNCTION ENTRY
+	.text
+	.globl main
+main:		# METHOD ENTRY
+	sw    $ra, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	sw    $fp, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	addu  $fp, $sp, 16
+	subu  $sp, $sp, 16
+		# IF-ELSE COND
+		#NOT-EQUALITY
+	li    $t0, 1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	li    $t1, 0
+	sw    $t1, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t1, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	sne   $t0, $t0, $t1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	beq   $t0, 0, .L0
+		#WRITE
+	.data
+.L2:	.asciiz  "true!!"
+	.text
+	la    $t0, .L2
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+	b     .L1
+.L0:
+		#WRITE
+	.data
+.L3:	.asciiz  "fail"
+	.text
+	la    $t0, .L3
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+.L1:
+		#READ
+	li    $v0, 5
+	syscall
+	sw    $v0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+	sw    $t0, -28($fp)
+		# IF-ELSE COND
+	lw    $t0, -28($fp)	#load local var
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	beq   $t0, 0, .L4
+		#WRITE
+	.data
+.L6:	.asciiz  "yeah"
+	.text
+	la    $t0, .L6
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+	b     .L5
+.L4:
+		#WRITE
+	.data
+.L7:	.asciiz  ":("
+	.text
+	la    $t0, .L7
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+.L5:
+		#ASSIGN
+	li    $t0, 10
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+		#ASSIGN
+	li    $t0, 20
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+		#ASSIGN
+		#CALL
+	jal   _func
+	sw    $v0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+	sw    $t0, -16($fp)
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+		# IF-ELSE COND
+	lw    $t1, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	sgt   $t0, $t0, $t1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	beq   $t0, 0, .L8
+		#WRITE
+	.data
+.L10:	.asciiz  "true\n"
+	.text
+	la    $t0, .L10
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+	b     .L9
+.L8:
+		#WRITE
+	.data
+.L11:	.asciiz  "false\n"
+	.text
+	la    $t0, .L11
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+.L9:
+		#WHILE COND
+.L13:
+	li    $t0, 5
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t1, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	sgt   $t0, $t0, $t1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	beq   $t0, 0, .L12
+		#POST-DECRESEMENT
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	addi  $t0, $t0, -1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+		#POST-INCREMENT
+	lw    $t0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	addi  $t0, $t0, 1
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $t0, 4($sp)	#peek
+	b     .L13
+.L12:
+		#WRITE
+	.data
+.L14:	.asciiz  "after\n"
+	.text
+	la    $t0, .L14
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+		#WRITE
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 1
+	syscall
+		#WRITE
+	.data
+.L15:	.asciiz  "   "
+	.text
+	la    $t0, .L15
+	sw    $t0, 0($sp)	#PUSH
+	subu  $sp, $sp, 4
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 4
+	syscall
+		#WRITE
+	lw    $a0, 4($sp)	#POP
+	addu  $sp, $sp, 4
+	li    $v0, 1
+	syscall
+		#RETURN
+	b     _main_Exit
+		# FUNCTION EXIT
+_main_Exit:
+	lw    $ra, -8($fp)	#get ra
+	move  $t0, $fp		#save control link
+	lw    $fp, -12($fp)	#restore FP
+	move  $sp, $t0		#restore SP
+	li    $v0, 10		#load exit code for syscall
+	syscall

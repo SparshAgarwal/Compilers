@@ -7,8 +7,8 @@ import java.util.*;
 public class SemSym {
     private Type type;
 
-    public int offset; // the offset of a symbol to fp
-    public int structOffset; // the offset of the id as it is declared inside a struct
+    public int offst;
+    public int structOffst;
     public boolean isGlobal;
     public int size;
 
@@ -16,8 +16,8 @@ public class SemSym {
     public SemSym(Type type) {
         this.type = type;
 
-    this.offset = 0; // test if initialized
-    this.structOffset = 0;
+    this.offst = 0;
+    this.structOffst = 0;
     this.isGlobal = false;
     size = 0; //
     }
@@ -27,9 +27,7 @@ public class SemSym {
     }
     
     public String toString() {
-        // return type.toString() + "<" + Integer.toString(offset) + ">";
-        return "<" + Integer.toString(offset) + "> $" + structOffset + "$"  + " |" + size +"|";
-
+        return "<" + Integer.toString(offst) + "> $" + structOffst + "$"  + " |" + size +"|";
     }
 }
 
